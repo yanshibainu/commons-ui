@@ -1,10 +1,5 @@
 import React, { useState } from 'react'
-// import { connect } from 'react-redux';
-// import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types'
-// import Link from 'next/link';
-// import Router from 'next/router';
-// import { leftLayoutItemList, projectName, projectLogoImgSrc } from "../../../config";
 import {
   Container,
   Sidebar,
@@ -12,21 +7,10 @@ import {
   Navbar,
   Nav,
   Icon,
-  Dropdown,
   Affix,
   Message
 } from 'rsuite'
 import Sidenav from './sidenav'
-// import Loader from "../../loader";
-
-// const headerStyles = {
-//   // padding: 18,
-//   // fontSize: 16,
-//   // height: 88,
-//   // background: '#365cad',
-//   // whiteSpace: 'nowrap',
-//   // overflow: 'hidden'
-// };
 
 const headerStyles = {
   padding: 18,
@@ -54,22 +38,9 @@ const userInfoStyles = {
   height: 20
 }
 
-const NavToggle = ({ expand, onChange, logout }) => (
+const NavToggle = ({ expand, onChange }) => (
   <Navbar className='nav-toggle'>
     <Navbar.Body>
-      {/* <Nav>
-        <Dropdown
-          placement="topStart"
-          trigger="hover"
-          renderTitle={() => {
-            return <Icon style={iconStyles} icon="cog" />;
-          }}
-        >
-          <Dropdown.Item onClick={() => Router.push("/user")}>個人資訊</Dropdown.Item>
-          <Dropdown.Item onClick={() => logout()}>登出</Dropdown.Item>
-        </Dropdown>
-      </Nav> */}
-
       <Nav pullRight>
         <Nav.Item
           onClick={onChange}
@@ -82,35 +53,10 @@ const NavToggle = ({ expand, onChange, logout }) => (
   </Navbar>
 )
 
-const SidenavTitle = ({ expand }) => (
-  <div>
-    <div style={headerStyles}>
-      <Icon icon='logo-analytics' size='lg' style={{ verticalAlign: 0 }} />
-      <span style={{ marginLeft: 12 }}> </span>
-    </div>
-    <Dropdown
-      title={expand ? '魏光泰' : ''}
-      trigger='hover'
-      icon={<Icon icon='user' />}
-    >
-      <Dropdown.Item icon={<Icon icon='file' />}>個人資訊</Dropdown.Item>
-      <Dropdown.Item icon={<Icon icon='file-o' />}>登出</Dropdown.Item>
-    </Dropdown>
-
-    {/* {expand &&
-      <Dropdown title="資訊處 程式設計師 魏光泰" icon={<Icon icon="file" />}
-        placement="topStart"
-        trigger="click"
-        renderTitle={() => {
-          return <Icon style={iconStyles} icon="cog" />;
-        }}
-      >
-        <Dropdown.Item onClick={() => Router.push("/user")}>個人資訊</Dropdown.Item>
-        <Dropdown.Item onClick={() => logout()}>登出</Dropdown.Item>
-      </Dropdown>
-    } */}
-  </div>
-)
+NavToggle.propTypes = {
+  expand: PropTypes.bool.isRequired,
+  onChange: PropTypes.func
+}
 
 // const defaultOpenKeys = ['task', 'system']
 
@@ -122,90 +68,47 @@ const SidenavTitle = ({ expand }) => (
 // )(Sidenav)
 
 const propTypes = {
+  sidenavTitle: PropTypes.elementType.isRequired,
   contextLayout: PropTypes.elementType.isRequired,
   sidenavData: PropTypes.array.isRequired,
-  // setExpandAction: PropTypes.func.isRequired,
-  // setScrollTopAction: PropTypes.func.isRequired,
-  // info: PropTypes.object,
-  // logout: PropTypes.func.isRequired,
-  // $$leftLayout: ImmutablePropTypes.map.isRequired,
-  // $$user: ImmutablePropTypes.map,
-  // $$loader: ImmutablePropTypes.map.isRequired,
 
-  error: PropTypes.string,
-  isLoading: PropTypes.bool
+  error: PropTypes.string
 }
 
-const defaultProps = {
-  isLoading: false
-}
+const defaultProps = {}
 
 const Layout = ({
+  sidenavTitle: SidenavTitle,
   contextLayout: ContextLayout,
   sidenavData,
-  error,
-  isLoading
-  // setExpandAction,
-  // setScrollTopAction,
-  // logout,
-  // $$leftLayout,
-  // $$user,
-  // $$loader
+  error
 }) => {
-  // const _expand = $$leftLayout.get("expand");
-  // const scrollTop = $$leftLayout.get("scrollTop");
-
   const [expand, setExpand] = useState(true)
 
   const _setExpand = (value) => {
     setExpand(value)
-    // setExpandAction(value);
   }
-
-  // useEffect(() => {
-  //   if (_expand != expand)
-  //     setExpand(_expand);
-  // }, [_expand]);
 
   return (
     <div className='show-fake-browser sidebar-page'>
       <Container>
-        <Sidebar style={sidebarStyles} width={expand ? 260 : 56} collapsible>
-          <Affix>
-            <SidenavTitle expand={expand} />
-            {/* <SidenavContainer
-              data={leftLayoutItemList}
-              expanded={expand}
-              setScrollTopAction={setScrollTopAction}
-              scrollTop={scrollTop}
-              appearance="subtle"
-              renderTitle={() => SidenavTitle(expand, $$user)}
-              sidenavBodyStyle={() => {
-                return {
-                  height: `calc(100vh - ${headerStyles.height + iconStyles.height + userInfoStyles.height + 40}px)`,
-                }
-              }}
-            /> */}
-            <Sidenav
-              data={sidenavData}
-              expanded={expand}
-              // setScrollTopAction={setScrollTopAction}
-              // scrollTop={scrollTop}
-              // appearance="subtle"
-              // renderTitle={() => <SidenavTitle expand={expand} />}
-              sidenavBodyStyle={() => {
-                return {
-                  height: `calc(100vh - ${
-                    headerStyles.height +
-                    iconStyles.height +
-                    userInfoStyles.height +
-                    18
-                  }px)`
-                }
-              }}
-            />
-            <NavToggle onChange={() => _setExpand(!expand)} expand={expand} />
-          </Affix>
+        <Sidebar style={sidebarStyles} width={expand ? 200 : 56} collapsible>
+          <SidenavTitle expand={expand} />
+          <Sidenav
+            data={sidenavData}
+            expanded={expand}
+            sidenavBodyStyle={() => {
+              return {
+                height: `calc(100vh - ${
+                  headerStyles.height +
+                  iconStyles.height +
+                  userInfoStyles.height +
+                  18
+                }px)`
+              }
+            }}
+          />
+          <NavToggle onChange={() => _setExpand(!expand)} expand={expand} />
         </Sidebar>
         <Container style={{ minWidth: 0 }}>
           <Content>
@@ -223,7 +126,6 @@ const Layout = ({
             <ContextLayout />
           </Content>
         </Container>
-        {/* {isLoading && <Loader />} */}
       </Container>
     </div>
   )
