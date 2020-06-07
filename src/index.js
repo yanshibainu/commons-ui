@@ -6,6 +6,5 @@
 //   return <div className={styles.test}>Example Component: {text} {ok}</div>
 // }
 
-
-export {default as SideBarContainer } from './sidebar-container';
-export {default as SidenavLayout } from './sidenav-layout';
+export { default as SideBarContainer } from './sidebar-container'
+export { default as SidenavLayout } from './sidenav-layout'

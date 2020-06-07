@@ -1,10 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import { SidenavLayout } from 'commons-ui'
+import { SidenavLayout } from 'commons-ui';
 
-import 'rsuite/lib/styles/index.less';
-
-import 'commons-ui/dist/index.css'
+import 'commons-ui/dist/index.css';
+import './index.less';
 
 const routes = {
   info: {
@@ -359,157 +358,8 @@ const sidenavData = {
       icon: "icon-content rs-icon rs-icon-edit2",
       name: "發起表單",
       layoutName: "start-process"
-    },
-    {
-      id: "task",
-      icon: "fas fa-tasks",
-      name: "生物安全審查作業",
-      children: [
-        routes.info["/task/F001"],
-        routes.info["/task/F002"],
-        // routes.info["/task/F003"],
-        routes.info["/task/F004"],
-        routes.info["/task/F005"],
-      ]
-    },
-    {
-      id: "4",
-      icon: "icon-content rs-icon rs-icon-search",
-      name: "案件查詢",
-      layoutName: "history-search"
-    },
-    {
-      id: "6",
-      icon: "icon-content rs-icon rs-icon-download",
-      name: "實驗室生物安全等級證明申請",
-      layoutName: "internal-audit"
-    },
-    {
-      id: "7",
-      icon: "icon-content rs-icon rs-icon-download",
-      name: "輸出入申請案件維護",
-      layoutName: "form-download"
-    },
-    {
-      id: "8",
-      icon: "icon-content rs-icon rs-icon-indent",
-      name: "院內規定",
-      layoutName: "inner-rule"
-    },
-    {
-      id: "9",
-      icon: "icon-content rs-icon rs-icon-list-alt",
-      name: "國內規範",
-      layoutName: "standard"
-    },
-    {
-      id: "system",
-      icon: "icon-content rs-icon rs-icon-wrench",
-      name: "系統管理作業",
-      children: [
-        // {
-        //   id: "101",
-        //   icon: "zmdi zmdi-comment-text",
-        //   name: "系統訊息管理維護",
-        //   layoutName: "system"
-        // },
-        routes.info["/system-announce"],
-        routes.info["/system-departments"],
-        routes.info["/system-groups"],
-        // {
-        //   id: "105",
-        //   icon: "rs-icon rs-icon-upload",
-        //   name: "附件上傳",
-        //   layoutName: "attach-upload",
-        //   dataColumns:
-        //     [
-        //       {
-        //         title: "檔案名稱",
-        //         filterName: null,
-        //         data: "name",
-        //         name: "name"
-        //       }
-        //       ,
-        //       {
-        //         title: "檔案描述",
-        //         filterName: null,
-        //         data: "desc",
-        //         name: "desc"
-        //       }
-        //       ,
-        //       {
-        //         title: "下載載止日期",
-        //         filterName: null,
-        //         data: "deadLine",
-        //         name: "deadLine"
-        //       }
-        //       ,
-        //       {
-        //         title: "上傳者",
-        //         filterName: null,
-        //         data: "uploadUser",
-        //         name: "uploadUser",
-        //       }
-        //     ],
-        // },
-      ]
     }
-  ],
-  reviewDataColumns:
-    [{
-      title: "計畫名稱",
-      filterName: "計畫名稱",
-      data: null
-    },
-    {
-      title: "部門",
-      filterName: "主持人部門名稱",
-      data: null
-    },
-    {
-      title: "申請人",
-      filterName: "主持人姓名",
-      data: null
-    },
-    {
-      title: "狀態",
-      filterName: null,
-      data: "nameWithoutCascade"
-    },
-    {
-      title: "送出時間",
-      filterName: null,
-      data: "createTime"
-    }
-    ],
-  announceDataColumns:
-    [
-
-      {
-        title: "公告人",
-        filterName: null,
-        data: "announceUser",
-        name: "announceUser"
-      },
-      {
-        title: "公告日期",
-        filterName: null,
-        data: "announceDate",
-        name: "announceDate"
-      },
-      {
-        title: "公告結束日期",
-        filterName: null,
-        data: "announceDeadLine",
-        name: "announceDeadLine"
-      },
-      {
-        title: "公告內容",
-        filterName: null,
-        data: "message",
-        name: "message"
-      }
-    ]
+  ]
 };
 
 const ContextLayout = () => {

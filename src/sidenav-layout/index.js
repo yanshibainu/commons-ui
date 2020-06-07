@@ -1,1 +1,1 @@
-export { default } from './sidenav-layout';
+export { default } from './sidenav-layout'
