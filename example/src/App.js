@@ -7,7 +7,6 @@ import {
   Dropdown,
 } from 'rsuite'
 
-import 'commons-ui/dist/index.css'
 import './index.less'
 
 const routes = {
