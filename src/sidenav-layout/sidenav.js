@@ -7,11 +7,13 @@ const propTypes = {
   expanded: PropTypes.bool.isRequired,
   defaultOpenKeys: PropTypes.array,
   appearance: PropTypes.string,
-  sidenavBodyStyle: PropTypes.func.isRequired
+  sidenavBodyStyle: PropTypes.func.isRequired,
+  itemRender: PropTypes.elementType
 }
 
 const defaultProps = {
-  appearance: 'subtle'
+  appearance: 'subtle',
+  itemRender: Nav.Item
 }
 
 const ReutieSidenav = ({
@@ -19,7 +21,9 @@ const ReutieSidenav = ({
   expanded: _expanded,
   defaultOpenKeys,
   appearance,
-  sidenavBodyStyle
+  sidenavBodyStyle,
+  itemRender: ItemRender,
+  ...props
 }) => {
   const [expanded, setExpanded] = useState(_expanded)
 
@@ -83,16 +87,17 @@ const ReutieSidenav = ({
     // const active = router.asPath === linkProps.as;
 
     return (
-      <Nav.Item
+      <ItemRender
         style={{
           marginRight: '10px'
         }}
         key={item.id}
         eventKey={item}
         icon={<Icon icon={item.icon} />}
+        {...props}
       >
         {item.name}
-      </Nav.Item>
+      </ItemRender>
     )
   }
 

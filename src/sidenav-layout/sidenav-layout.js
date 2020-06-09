@@ -71,6 +71,7 @@ const propTypes = {
   sidenavTitle: PropTypes.elementType.isRequired,
   contextLayout: PropTypes.elementType.isRequired,
   sidenavData: PropTypes.array.isRequired,
+  itemRender: PropTypes.elementType,
 
   error: PropTypes.string
 }
@@ -81,6 +82,7 @@ const Layout = ({
   sidenavTitle: SidenavTitle,
   contextLayout: ContextLayout,
   sidenavData,
+  itemRender,
   error
 }) => {
   const [expand, setExpand] = useState(true)
@@ -96,6 +98,7 @@ const Layout = ({
           <SidenavTitle expand={expand} />
           <Sidenav
             data={sidenavData}
+            itemRender={itemRender}
             expanded={expand}
             sidenavBodyStyle={() => {
               return {
