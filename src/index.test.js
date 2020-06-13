@@ -1,7 +1,13 @@
-import { ExampleComponent } from '.'
+import { SideBarContainer, SidenavLayout } from '.'
 
-describe('ExampleComponent', () => {
+describe('SideBarContainer', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(SideBarContainer).toBeTruthy()
+  })
+})
+
+describe('SidenavLayout', () => {
+  it('is truthy', () => {
+    expect(SidenavLayout).toBeTruthy()
   })
 })
