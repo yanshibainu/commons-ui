@@ -25,7 +25,8 @@
     "test:unit-coverage": "cross-env CI=1 react-scripts test --env=jsdom --coverage",
     "test:watch": "react-scripts test --env=jsdom",
     "pre-deploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "publish:npm": "yarn publish"
   },
   "pre-commit": [
     "test:lint"
