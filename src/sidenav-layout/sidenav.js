@@ -85,9 +85,10 @@ const ReutieSidenav = ({
 
     // const linkProps = getLinkProps(item);
     // const active = router.asPath === linkProps.as;
-
     return (
       <ItemRender
+        href={item.href}
+        as={item.as}
         style={{
           marginRight: '10px'
         }}

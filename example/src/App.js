@@ -2,10 +2,7 @@ import React from 'react'
 
 import { SidenavLayout } from 'commons-ui'
 
-import {
-  Icon,
-  Dropdown,
-} from 'rsuite'
+import { Icon, Dropdown } from 'rsuite'
 
 import './index.less'
 
@@ -338,12 +335,30 @@ const sidenavData = {
   projectName: '',
   projectCode: '',
   projectLogoImgSrc: '/bower_components/pro-resources/images/icon/logo.png',
-  leftLayoutItemList: [
+  functionList: [
     {
-      id: 'start-process',
+      id: 'Item',
+      name: 'Item',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      name: '發起表單',
-      layoutName: 'start-process'
+      href: 'item'
+    },
+    {
+      id: 'Group',
+      name: 'Group',
+      children: [
+        {
+          id: 'GroupItem',
+          name: 'GroupItem',
+          icon: 'icon-content rs-icon rs-icon-edit2',
+          href: 'group-item'
+        },
+        {
+          id: 'GroupItem2',
+          name: 'GroupItem2',
+          icon: 'icon-content rs-icon rs-icon-edit2',
+          href: 'group-item2'
+        }
+      ]
     }
   ]
 }
@@ -369,7 +384,7 @@ const SidenavTitle = ({ expand }) => (
       <span style={{ marginLeft: 12 }}> </span>
     </div>
     <Dropdown
-      title={expand ? '魏光泰' : ''}
+      title={expand ? 'User' : ''}
       trigger='hover'
       icon={<Icon icon='user' />}
     >
@@ -396,7 +411,7 @@ const App = () => {
   // return <ExampleComponent text="Create React Library Example 😄" />
   return (
     <SidenavLayout
-      sidenavData={sidenavData.leftLayoutItemList}
+      sidenavData={sidenavData.functionList}
       sidenavTitle={SidenavTitle}
       contextLayout={ContextLayout}
     />
