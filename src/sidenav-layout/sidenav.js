@@ -8,12 +8,14 @@ const propTypes = {
   defaultOpenKeys: PropTypes.array,
   appearance: PropTypes.string,
   sidenavBodyStyle: PropTypes.func.isRequired,
-  itemRender: PropTypes.elementType
+  itemRender: PropTypes.elementType,
+  dropdownItemRender: PropTypes.elementType
 }
 
 const defaultProps = {
   appearance: 'subtle',
-  itemRender: Nav.Item
+  itemRender: Nav.Item,
+  dropdownItemRender: Dropdown.Item
 }
 
 const ReutieSidenav = ({
@@ -23,6 +25,7 @@ const ReutieSidenav = ({
   appearance,
   sidenavBodyStyle,
   itemRender: ItemRender,
+  dropdownItemRender: DropdownItemRender,
   ...props
 }) => {
   const [expanded, setExpanded] = useState(_expanded)
@@ -45,7 +48,9 @@ const ReutieSidenav = ({
         >
           {item.children.map((child) => {
             return (
-              <Dropdown.Item
+              <DropdownItemRender
+                href={item.href}
+                as={item.as}
                 style={{
                   marginRight: '10px'
                 }}
@@ -76,7 +81,7 @@ const ReutieSidenav = ({
                     `}
                   </style>
                 }
-              </Dropdown.Item>
+              </DropdownItemRender>
             )
           })}
         </Dropdown>
