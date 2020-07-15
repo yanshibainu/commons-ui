@@ -72,6 +72,7 @@ const propTypes = {
   contextLayout: PropTypes.elementType.isRequired,
   sidenavData: PropTypes.array.isRequired,
   itemRender: PropTypes.elementType,
+  dropdownItemRender: PropTypes.elementType,
 
   error: PropTypes.string
 }
@@ -83,6 +84,7 @@ const Layout = ({
   contextLayout: ContextLayout,
   sidenavData,
   itemRender,
+  dropdownItemRender,
   error
 }) => {
   const [expand, setExpand] = useState(true)
@@ -99,6 +101,7 @@ const Layout = ({
           <Sidenav
             data={sidenavData}
             itemRender={itemRender}
+            dropdownItemRender={dropdownItemRender}
             expanded={expand}
             sidenavBodyStyle={() => {
               return {
