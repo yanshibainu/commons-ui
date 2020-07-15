@@ -49,8 +49,8 @@ const ReutieSidenav = ({
           {item.children.map((child) => {
             return (
               <DropdownItemRender
-                href={item.href}
-                as={item.as}
+                href={child.href}
+                as={child.as}
                 style={{
                   marginRight: '10px'
                 }}
