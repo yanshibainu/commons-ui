@@ -74,7 +74,8 @@ const propTypes = {
   sidenavData: PropTypes.array.isRequired,
   itemRender: PropTypes.elementType,
   dropdownItemRender: PropTypes.elementType,
-
+  activePath: PropTypes.string,
+  defaultOpenKeys: PropTypes.array,
   error: PropTypes.string
 }
 
@@ -86,7 +87,9 @@ const Layout = ({
   sidenavData,
   itemRender,
   dropdownItemRender,
-  error
+  error,
+  activePath,
+  defaultOpenKeys
 }) => {
   const [expand, setExpand] = useState(true)
 
@@ -106,6 +109,8 @@ const Layout = ({
                 itemRender={itemRender}
                 dropdownItemRender={dropdownItemRender}
                 expanded={expand}
+                activePath={activePath}
+                defaultOpenKeys={defaultOpenKeys}
                 sidenavBodyStyle={() => {
                   return {
                     height: `calc(100vh - ${

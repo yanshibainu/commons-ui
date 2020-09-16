@@ -340,7 +340,8 @@ const sidenavData = {
       id: 'Item',
       name: 'Item',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item',
+      as: 'item'
     },
     {
       id: 'Group',
@@ -361,106 +362,100 @@ const sidenavData = {
       ]
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item2',
+      name: 'Item2',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item2'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item3',
+      name: 'Item3',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item3'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item4',
+      name: 'Item4',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item4'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item5',
+      name: 'Item5',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item5'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item6',
+      name: 'Item6',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item6'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item7',
+      name: 'Item7',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item7'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item8',
+      name: 'Item8',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item8'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item9',
+      name: 'Item9',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item9'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item10',
+      name: 'Item10',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item10'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item11',
+      name: 'Item12',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item13'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item14',
+      name: 'Item14',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item14'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item15',
+      name: 'Item15',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item15'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item16',
+      name: 'Item16',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item16'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item17',
+      name: 'Item17',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item17'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item18',
+      name: 'Item18',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item18'
     },
     {
-      id: 'Item',
-      name: 'Item',
+      id: 'Item19',
+      name: 'Item19',
       icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
-    },
-    {
-      id: 'Item',
-      name: 'Item',
-      icon: 'icon-content rs-icon rs-icon-edit2',
-      href: 'item'
+      href: 'item19'
     },
   ]
 }
@@ -516,6 +511,7 @@ const App = () => {
       sidenavData={sidenavData.functionList}
       sidenavTitle={SidenavTitle}
       contextLayout={ContextLayout}
+      activePath="item6"
     />
   )
 }

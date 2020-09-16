@@ -9,7 +9,8 @@ const propTypes = {
   appearance: PropTypes.string,
   sidenavBodyStyle: PropTypes.func.isRequired,
   itemRender: PropTypes.elementType,
-  dropdownItemRender: PropTypes.elementType
+  dropdownItemRender: PropTypes.elementType,
+  activePath: PropTypes.string
 }
 
 const defaultProps = {
@@ -26,6 +27,7 @@ const ReutieSidenav = ({
   sidenavBodyStyle,
   itemRender: ItemRender,
   dropdownItemRender: DropdownItemRender,
+  activePath,
   ...props
 }) => {
   const [expanded, setExpanded] = useState(_expanded)
@@ -47,8 +49,11 @@ const ReutieSidenav = ({
           icon={<Icon icon={item.icon} />}
         >
           {item.children.map((child) => {
+            const active = activePath === child.href
+
             return (
               <DropdownItemRender
+                active={active}
                 href={child.href}
                 as={child.as}
                 style={{
@@ -88,10 +93,11 @@ const ReutieSidenav = ({
       )
     }
 
-    // const linkProps = getLinkProps(item);
-    // const active = router.asPath === linkProps.as;
+    const active = activePath === item.href
+
     return (
       <ItemRender
+        active={active}
         href={item.href}
         as={item.as}
         style={{
