@@ -11,6 +11,8 @@ import {
   Message
 } from 'rsuite'
 import Sidenav from './sidenav'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css'
 
 const headerStyles = {
   padding: 18,
@@ -98,22 +100,25 @@ const Layout = ({
       <Container>
         <Sidebar style={sidebarStyles} width={expand ? 200 : 56} collapsible>
           <SidenavTitle expand={expand} />
-          <Sidenav
-            data={sidenavData}
-            itemRender={itemRender}
-            dropdownItemRender={dropdownItemRender}
-            expanded={expand}
-            sidenavBodyStyle={() => {
-              return {
-                height: `calc(100vh - ${
-                  headerStyles.height +
-                  iconStyles.height +
-                  userInfoStyles.height +
-                  18
-                }px)`
-              }
-            }}
-          />
+          <PerfectScrollbar>
+            <Sidenav
+              data={sidenavData}
+              itemRender={itemRender}
+              dropdownItemRender={dropdownItemRender}
+              expanded={expand}
+              sidenavBodyStyle={() => {
+                return {
+                  height: `calc(100vh - ${
+                    headerStyles.height +
+                    iconStyles.height +
+                    userInfoStyles.height +
+                    18
+                  }px)`
+                }
+              }}
+            />
+          </PerfectScrollbar>
+
           <NavToggle onChange={() => _setExpand(!expand)} expand={expand} />
         </Sidebar>
         <Container style={{ minWidth: 0 }}>

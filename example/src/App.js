@@ -359,7 +359,109 @@ const sidenavData = {
           href: 'group-item2'
         }
       ]
-    }
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
+    {
+      id: 'Item',
+      name: 'Item',
+      icon: 'icon-content rs-icon rs-icon-edit2',
+      href: 'item'
+    },
   ]
 }
 

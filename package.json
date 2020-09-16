@@ -61,6 +61,7 @@
     "dist"
   ],
   "dependencies": {
+    "react-perfect-scrollbar": "^1.5.8",
     "rsuite": "^4.7.2"
   }
 }
