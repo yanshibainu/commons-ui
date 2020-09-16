@@ -12,7 +12,6 @@ import {
 } from 'rsuite'
 import Sidenav from './sidenav'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import 'react-perfect-scrollbar/dist/css/styles.css'
 
 const headerStyles = {
   padding: 18,
