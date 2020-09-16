@@ -98,27 +98,29 @@ const Layout = ({
     <div className='show-fake-browser sidebar-page'>
       <Container>
         <Sidebar style={sidebarStyles} width={expand ? 200 : 56} collapsible>
-          <SidenavTitle expand={expand} />
-          <PerfectScrollbar>
-            <Sidenav
-              data={sidenavData}
-              itemRender={itemRender}
-              dropdownItemRender={dropdownItemRender}
-              expanded={expand}
-              sidenavBodyStyle={() => {
-                return {
-                  height: `calc(100vh - ${
-                    headerStyles.height +
-                    iconStyles.height +
-                    userInfoStyles.height +
-                    18
-                  }px)`
-                }
-              }}
-            />
-          </PerfectScrollbar>
+          <Affix>
+            <SidenavTitle expand={expand} />
+            <PerfectScrollbar>
+              <Sidenav
+                data={sidenavData}
+                itemRender={itemRender}
+                dropdownItemRender={dropdownItemRender}
+                expanded={expand}
+                sidenavBodyStyle={() => {
+                  return {
+                    height: `calc(100vh - ${
+                      headerStyles.height +
+                      iconStyles.height +
+                      userInfoStyles.height +
+                      18
+                    }px)`
+                  }
+                }}
+              />
+            </PerfectScrollbar>
 
-          <NavToggle onChange={() => _setExpand(!expand)} expand={expand} />
+            <NavToggle onChange={() => _setExpand(!expand)} expand={expand} />
+          </Affix>
         </Sidebar>
         <Container style={{ minWidth: 0 }}>
           <Content>
