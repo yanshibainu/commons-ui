@@ -8,3 +8,4 @@
 
 export { default as SideBarContainer } from './sidebar-container'
 export { default as SidenavLayout } from './sidenav-layout'
+export { default as ContainerLayout } from './container-layout'
