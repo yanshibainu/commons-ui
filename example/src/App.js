@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { SidenavLayout } from 'commons-ui'
+import { SidenavLayout, ContainerLayout } from 'commons-ui'
 
-import { Icon, Dropdown } from 'rsuite'
+import { Icon, Dropdown, ButtonToolbar, Button } from 'rsuite'
 
 import './index.less'
 
@@ -456,12 +456,56 @@ const sidenavData = {
       name: 'Item19',
       icon: 'icon-content rs-icon rs-icon-edit2',
       href: 'item19'
-    },
+    }
   ]
 }
 
+const toolBar = () => {
+  return (
+    <ButtonToolbar>
+      <Button appearance='ghost' active>
+        切換預視
+      </Button>
+      <Button appearance='ghost' active>
+        文稿屬性
+      </Button>
+      <Button appearance='ghost' active>
+        編輯檔案歸檔資訊
+      </Button>
+      <Button appearance='ghost' active>
+        列印
+      </Button>
+      <Button appearance='ghost' active>
+        刪除簽稿
+      </Button>
+      <Button appearance='ghost' active>
+        取號
+      </Button>
+    </ButtonToolbar>
+  )
+}
+
+const menuBar = () => {
+  return <div>選單</div>
+}
+
+const leftLayout = () => {
+  return <div>左邊清單</div>
+}
+const contextLayout = () => {
+  return <div>內容</div>
+}
 const ContextLayout = () => {
-  return <div>ContextLayout</div>
+  return (
+    <div>
+      <ContainerLayout
+        menuBar={menuBar}
+        toolBar={toolBar}
+        contextLayout={contextLayout}
+        leftLayout={leftLayout}
+      />
+    </div>
+  )
 }
 
 const headerStyles = {
@@ -511,7 +555,7 @@ const App = () => {
       sidenavData={sidenavData.functionList}
       sidenavTitle={SidenavTitle}
       contextLayout={ContextLayout}
-      activePath="item6"
+      activePath='item6'
     />
   )
 }
