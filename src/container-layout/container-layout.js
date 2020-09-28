@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { Grid, Row, Col } from 'rsuite'
 
 const propTypes = {
-  menuBar: PropTypes.elementType.isRequired,
-  contextLayout: PropTypes.elementType.isRequired,
-  toolBar: PropTypes.elementType.isRequired,
-  leftLayout: PropTypes.elementType.isRequired
+  menuBar: PropTypes.func.isRequired,
+  contextLayout: PropTypes.func.isRequired,
+  toolBar: PropTypes.func.isRequired,
+  leftLayout: PropTypes.func.isRequired
 }
 
 const defaultProps = {}
