@@ -1,1 +1,1 @@
-export { default } from './edit-layout'
+export { default } from './editor-container-layout'
