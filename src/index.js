@@ -18,4 +18,3 @@ const commonsUI = {
   EditorContainerLayout
 }
 export default { EditorContainerLayout, commonsUI }
-
