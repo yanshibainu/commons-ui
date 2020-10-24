@@ -11,28 +11,15 @@ const propTypes = {
 
 const defaultProps = {}
 
-const EditContainerLayout = ({
-  menuBar: MenuBar,
-  toolBar: ToolBar,
-  contextLayout: ContextLayout,
-  leftLayout: LeftLayout
-}) => {
+const EditContainerLayout = (props) => {
   return (
     <div>
       <Grid fluid>
+        <Row>{props.menuBar}</Row>
+        <Row>{props.toolBar}</Row>
         <Row>
-          <MenuBar />
-        </Row>
-        <Row>
-          <ToolBar />
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <LeftLayout />
-          </Col>
-          <Col xs={18}>
-            <ContextLayout />
-          </Col>
+          <Col xs={6}>{props.leftLayout}</Col>
+          <Col xs={18}>{props.contextLayout}</Col>
         </Row>
       </Grid>
     </div>
