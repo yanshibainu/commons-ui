@@ -1,6 +1,6 @@
 import React from 'react'
 
-import commonsUI,{ SidenavLayout, ContainerLayout } from 'commons-ui'
+import commonsUI,{ SidenavLayout } from 'commons-ui'
 
 import { Icon, Dropdown, ButtonToolbar, Button } from 'rsuite'
 
