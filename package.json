@@ -15,6 +15,7 @@
     "node": ">=10"
   },
   "scripts": {
+    "install": "yarn link react && yarn link react-dom",
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepare": "run-s build",
