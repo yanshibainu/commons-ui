@@ -558,6 +558,7 @@ const App = () => {
       sidenavTitle={SidenavTitle}
       contextLayout={ContextLayout}
       activePath='item6'
+      isExpand={false}
     />
   )
 }

@@ -76,10 +76,13 @@ const propTypes = {
   dropdownItemRender: PropTypes.elementType,
   activePath: PropTypes.string,
   defaultOpenKeys: PropTypes.array,
-  error: PropTypes.string
+  error: PropTypes.string,
+  isExpand: PropTypes.bool
 }
 
-const defaultProps = {}
+const defaultProps = {
+  isExpand: true
+}
 
 const Layout = ({
   sidenavTitle: SidenavTitle,
@@ -89,9 +92,10 @@ const Layout = ({
   dropdownItemRender,
   error,
   activePath,
-  defaultOpenKeys
+  defaultOpenKeys,
+  isExpand
 }) => {
-  const [expand, setExpand] = useState(true)
+  const [expand, setExpand] = useState(isExpand)
 
   const _setExpand = (value) => {
     setExpand(value)
