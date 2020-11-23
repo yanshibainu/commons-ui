@@ -15,6 +15,7 @@
     "node": ">=10"
   },
   "scripts": {
+    "link": "yarn link react && yarn link react-dom",
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepare": "run-s build",
@@ -61,7 +62,10 @@
     "dist"
   ],
   "dependencies": {
+    "add": "^2.0.6",
     "react-perfect-scrollbar": "^1.5.8",
-    "rsuite": "^4.7.2"
+    "react-split-pane": "^2.0.3",
+    "rsuite": "^4.7.2",
+    "yarn": "^1.22.10"
   }
 }

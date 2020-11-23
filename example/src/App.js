@@ -1,10 +1,12 @@
 import React from 'react'
 
-import { SidenavLayout, ContainerLayout } from 'commons-ui'
+import commonsUI,{ SidenavLayout } from 'commons-ui'
 
 import { Icon, Dropdown, ButtonToolbar, Button } from 'rsuite'
 
 import './index.less'
+
+const { EditorContainerLayout } = commonsUI
 
 const routes = {
   info: {
@@ -460,7 +462,7 @@ const sidenavData = {
   ]
 }
 
-const toolBar = () => {
+const ToolBar = () => {
   return (
     <ButtonToolbar>
       <Button appearance='ghost' active>
@@ -485,24 +487,24 @@ const toolBar = () => {
   )
 }
 
-const menuBar = () => {
+const MenuBar = () => {
   return <div>選單</div>
 }
 
-const leftLayout = () => {
+const LeftLayout = () => {
   return <div>左邊清單</div>
 }
-const contextLayout = () => {
+const Context = () => {
   return <div>內容</div>
 }
 const ContextLayout = () => {
   return (
     <div>
-      <ContainerLayout
-        menuBar={menuBar}
-        toolBar={toolBar}
-        contextLayout={contextLayout}
-        leftLayout={leftLayout}
+      <EditorContainerLayout
+        menuBar={<MenuBar />}
+        toolBar={<ToolBar />}
+        contextLayout={<Context />}
+        leftLayout={<LeftLayout />}
       />
     </div>
   )
@@ -556,6 +558,7 @@ const App = () => {
       sidenavTitle={SidenavTitle}
       contextLayout={ContextLayout}
       activePath='item6'
+      isExpand={false}
     />
   )
 }
