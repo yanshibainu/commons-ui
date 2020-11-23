@@ -9900,6 +9900,11 @@ rollup@^1.32.1:
     "@types/node" "*"
     acorn "^7.1.0"
 
+rsuite-schema@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/rsuite-schema/-/rsuite-schema-0.1.0.tgz#127b3438791a6813c9c6d1212f2475e55279cc9b"
+  integrity sha512-jwx5TZEBGKsMo8Z4Z3S9JWY5alG4Om2tvvEV6RHuqZEhVTGabSRPF/BbTThxKVC27zmPeJUDG0xyrV7Lvmk3ZQ==
+
 rsuite-table@^3.13.1:
   version "3.13.1"
   resolved "https://registry.yarnpkg.com/rsuite-table/-/rsuite-table-3.13.1.tgz#d74c6110f1f0fa46f0bd61656b85193b4cfe5704"
