@@ -22,13 +22,13 @@ const EditContainerLayout = (props) => {
     <div>
       <Grid fluid>
         <Row>{props.menuBar}</Row>
+        <Row>{props.toolBar}</Row>
         <Row>
           <SplitPane split='vertical' resizerStyle={styles}>
-            <div initialSize='25%' minSize='20%'>
+            <div initialSize='20%' minSize='20%'>
               {props.leftLayout}
             </div>
             <div>
-              <div>{props.toolBar}</div>
               <div>{props.contextLayout}</div>
             </div>
           </SplitPane>
