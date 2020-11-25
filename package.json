@@ -15,7 +15,8 @@
     "node": ">=10"
   },
   "scripts": {
-    "link": "yarn link react && yarn link react-dom",
+    "link": "yarn link react && yarn link react-dom && yarn link react-redux",
+    "unlink": "yarn unlink react && yarn unlink react-dom && yarn unlink react-redux",
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepare": "run-s build",
