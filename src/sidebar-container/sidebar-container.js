@@ -15,7 +15,8 @@ const propTypes = {
   sideBarComponent: PropTypes.elementType.isRequired,
   contextComponent: PropTypes.elementType.isRequired,
   isDisplayContentIcon: PropTypes.bool,
-  sidebarShowWidth: PropTypes.string
+  sidebarShowWidth: PropTypes.string,
+  sidebarBackgroundColor: PropTypes.string
 }
 
 const defaultProps = {
@@ -28,7 +29,8 @@ const SideBarContainer = forwardRef((props, ref) => {
     sideBarComponent: SideBarComponent,
     contextComponent: ContextComponent,
     isDisplayContentIcon,
-    sidebarShowWidth
+    sidebarShowWidth,
+    sidebarBackgroundColor
   } = props
 
   const sidebarRef = useRef()
@@ -86,47 +88,53 @@ const SideBarContainer = forwardRef((props, ref) => {
   //       transitionEnd
   //     )
   // }, [])
-
+  const styles = {
+    backgroundColor: sidebarBackgroundColor
+    // display: 'block'
+    // marginRight: 10
+  }
   return (
     <Container>
-      <Sidebar
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          flex: `"0 0 ${sidebarWidth}"`
-        }}
-        width={sidebarWidth}
-        collapsible
-      >
-        <div
-          ref={sidebarRef}
+      <div style={styles}>
+        <Sidebar
           style={{
             display: 'flex',
-            justifyContent: 'flex-end'
+            flexDirection: 'column',
+            flex: `"0 0 ${sidebarWidth}"`
           }}
+          width={sidebarWidth}
+          collapsible
         >
-          <IconButton
-            appearance='link'
-            icon={
-              <Icon
-                icon={
-                  showSidebar ? angleStyles.angleLeft : angleStyles.angleRight
-                }
-              />
-            }
-            onClick={() => _setShowSidebar(!showSidebar)}
-          />
-        </div>
-        <div style={{ display: showSidebar ? 'block' : 'none' }}>
-          <SideBarComponent
-            // info={info}
-            onSelectedItemsChange={onSelectedItemsChange}
-            // onSelectedCurrentItemId={onSelectedCurrentItemId}
-            scrollY='70vh'
-            {...props}
-          />
-        </div>
-      </Sidebar>
+          <div
+            ref={sidebarRef}
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end'
+            }}
+          >
+            <IconButton
+              appearance='link'
+              icon={
+                <Icon
+                  icon={
+                    showSidebar ? angleStyles.angleLeft : angleStyles.angleRight
+                  }
+                />
+              }
+              onClick={() => _setShowSidebar(!showSidebar)}
+            />
+          </div>
+          <div style={{ display: showSidebar ? 'block' : 'none' }}>
+            <SideBarComponent
+              // info={info}
+              onSelectedItemsChange={onSelectedItemsChange}
+              // onSelectedCurrentItemId={onSelectedCurrentItemId}
+              scrollY='70vh'
+              {...props}
+            />
+          </div>
+        </Sidebar>
+      </div>
       <Content>
         {isDisplayContentIcon && (
           <IconButton

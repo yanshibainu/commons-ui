@@ -8,7 +8,8 @@ const propTypes = {
   contextLayout: PropTypes.object.isRequired,
   toolBar: PropTypes.object.isRequired,
   leftLayout: PropTypes.object.isRequired,
-  sidebarShowWidth: PropTypes.string
+  sidebarShowWidth: PropTypes.string,
+  sidebarBackgroundColor: PropTypes.string
 }
 
 const defaultProps = {}
@@ -32,6 +33,7 @@ const EditContainerLayout = (props) => {
             sideBarComponent={props.leftLayout}
             contextComponent={props.contextLayout}
             sidebarShowWidth={props.sidebarShowWidth}
+            sidebarBackgroundColor={props.sidebarBackgroundColor}
           />
         </Row>
       </Grid>
