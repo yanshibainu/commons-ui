@@ -9,7 +9,6 @@ import EditorContainerLayout from './editor-container-layout'
 
 export { default as SideBarContainer } from './sidebar-container'
 export { default as SidenavLayout } from './sidenav-layout'
-export { default as ContainerLayout } from './container-layout'
 // export { default as EditorContainerLayout } from './editor-container-layout'
 
 export { EditorContainerLayout }

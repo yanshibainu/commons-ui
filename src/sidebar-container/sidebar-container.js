@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Container, Content, Sidebar, IconButton, Icon } from 'rsuite'
 
 const sidebarHideWidth = '30px'
-const sidebarShowWidth = '320px'
+// const sidebarShowWidth = '320px'
 const allShowWidth = '100%'
 
 const angleStyles = {
@@ -13,15 +13,22 @@ const angleStyles = {
 
 const propTypes = {
   sideBarComponent: PropTypes.elementType.isRequired,
-  contextComponent: PropTypes.elementType.isRequired
+  contextComponent: PropTypes.elementType.isRequired,
+  isDisplayContentIcon: PropTypes.bool,
+  sidebarShowWidth: PropTypes.string
 }
 
-const defaultProps = {}
+const defaultProps = {
+  isDisplayContentIcon: false,
+  sidebarShowWidth: '320px'
+}
 
 const SideBarContainer = forwardRef((props, ref) => {
   const {
     sideBarComponent: SideBarComponent,
-    contextComponent: ContextComponent
+    contextComponent: ContextComponent,
+    isDisplayContentIcon,
+    sidebarShowWidth
   } = props
 
   const sidebarRef = useRef()
@@ -121,22 +128,26 @@ const SideBarContainer = forwardRef((props, ref) => {
         </div>
       </Sidebar>
       <Content>
-        <IconButton
-          appearance='link'
-          icon={
-            <Icon
-              icon={
-                showContent ? angleStyles.angleRight : angleStyles.angleLeft
-              }
-            />
-          }
-          onClick={() => _setShowContent(!showContent)}
-        />
-        <IconButton
-          appearance='link'
-          icon={<Icon icon={showSidebar ? 'expand' : 'compress'} />}
-          onClick={() => _setShowSidebar(!showSidebar)}
-        />
+        {isDisplayContentIcon && (
+          <IconButton
+            appearance='link'
+            icon={
+              <Icon
+                icon={
+                  showContent ? angleStyles.angleRight : angleStyles.angleLeft
+                }
+              />
+            }
+            onClick={() => _setShowContent(!showContent)}
+          />
+        )}
+        {isDisplayContentIcon && (
+          <IconButton
+            appearance='link'
+            icon={<Icon icon={showSidebar ? 'expand' : 'compress'} />}
+            onClick={() => _setShowSidebar(!showSidebar)}
+          />
+        )}
         <div style={{ display: showContent ? 'block' : 'none' }}>
           <ContextComponent />
         </div>

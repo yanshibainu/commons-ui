@@ -503,8 +503,8 @@ const ContextLayout = () => {
       <EditorContainerLayout
         menuBar={<MenuBar />}
         toolBar={<ToolBar />}
-        contextLayout={<Context />}
-        leftLayout={<LeftLayout />}
+        contextLayout={Context}
+        leftLayout={LeftLayout}
       />
     </div>
   )
