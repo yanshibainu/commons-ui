@@ -5,9 +5,9 @@ import SidebarContainer from '../sidebar-container'
 // import SplitPane from 'react-split-pane'
 const propTypes = {
   menuBar: PropTypes.object.isRequired,
-  contextLayout: PropTypes.object.isRequired,
+  contextLayout: PropTypes.elementType.isRequired,
   toolBar: PropTypes.object.isRequired,
-  leftLayout: PropTypes.object.isRequired,
+  leftLayout: PropTypes.elementType.isRequired,
   sidebarShowWidth: PropTypes.string,
   sidebarBackgroundColor: PropTypes.string
 }
