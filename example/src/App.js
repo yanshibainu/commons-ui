@@ -1,12 +1,14 @@
 import React from 'react'
 
-import commonsUI,{ SidenavLayout } from 'commons-ui'
+import commonsUI, { SidenavLayout } from 'commons-ui'
 
-import { Icon, Dropdown, ButtonToolbar, Button } from 'rsuite'
+import { Icon, Dropdown, ButtonToolbar, Button, Table } from 'rsuite'
 
 import './index.less'
 
-const { EditorContainerLayout } = commonsUI
+const { EditorContainerLayout, SearchTable, ObjectCell } = commonsUI
+
+const { Cell, HeaderCell, Column } = Table
 
 const routes = {
   info: {
@@ -495,7 +497,21 @@ const LeftLayout = () => {
   return <div>左邊清單</div>
 }
 const Context = () => {
-  return <div>內容</div>
+  const column = [
+    <Column filter='true' flexGrow={1} sortable key='objectId'>
+      <HeaderCell>文號</HeaderCell>
+      <ObjectCell dataKey='objectId' />
+    </Column>,
+    <Column filter='true' flexGrow={4} key='subject'>
+      <HeaderCell>主旨</HeaderCell>
+      <Cell dataKey='subject' />
+    </Column>
+  ]
+  return (
+    <div>
+      <SearchTable column={column}/>
+    </div>
+  )
 }
 const ContextLayout = () => {
   return (
