@@ -19,8 +19,8 @@ import SearchTable from './search-table/table'
 export { default as SideBarContainer } from './sidebar-container'
 export { default as SidenavLayout } from './sidenav-layout'
 
-export { EditorContainerLayout }
-
+// export { EditorContainerLayout }
+export {  default as SearchTable } from './search-table/table'
 const commonsUI = {
   EditorContainerLayout,
   AttachCell,

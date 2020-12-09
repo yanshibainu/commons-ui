@@ -1,1 +1,3 @@
-export { default } from './search-table'
+import SearchTable from './search-table'
+
+export default SearchTable
