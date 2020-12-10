@@ -4,9 +4,9 @@ import { Grid, Row } from 'rsuite'
 import SidebarContainer from '../sidebar-container'
 // import SplitPane from 'react-split-pane'
 const propTypes = {
-  menuBar: PropTypes.object.isRequired,
+  menuBar: PropTypes.elementType.isRequired,
   contextLayout: PropTypes.elementType.isRequired,
-  toolBar: PropTypes.object.isRequired,
+  toolBar: PropTypes.elementType.isRequired,
   leftLayout: PropTypes.elementType.isRequired,
   sidebarShowWidth: PropTypes.string,
   sidebarBackgroundColor: PropTypes.string
@@ -23,11 +23,15 @@ const styles = {
 }
 */
 const EditContainerLayout = (props) => {
+  const {
+    toolBar: ToolBar,
+    menuBar: MenuBar
+  } = props
   return (
     <div>
       <Grid fluid>
-        <Row>{props.menuBar}</Row>
-        <Row>{props.toolBar}</Row>
+        <Row>{<MenuBar />}</Row>
+        <Row>{<ToolBar />}</Row>
         <Row>
           <SidebarContainer
             sideBarComponent={props.leftLayout}
