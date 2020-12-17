@@ -42,7 +42,7 @@ const SearchBar = (props) => {
   }
   return (
     <Grid fluid>
-      <Row className='show-grid mb-2'>
+      <Row className='mb-2'>
         <Col xs={14}>
           <SearchInputGroup size='md' placeholder='搜尋' />
         </Col>
