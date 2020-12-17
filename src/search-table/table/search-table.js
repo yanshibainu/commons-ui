@@ -106,7 +106,7 @@ const SearchTable = (props) => {
       )}
       */}
       <Grid fluid>
-        <Row className='show-grid mb-2'>
+        <Row className='mb-2'>
           <Table
             data={folderList}
             onRowClick={rowClickHandle(folderList)}
