@@ -1,12 +1,12 @@
 import React from 'react'
 
-import commonsUI, { SidenavLayout } from 'commons-ui'
+import commonsUI, { SidenavLayout,SearchTable, ObjectCell } from 'commons-ui'
 
 import { Icon, Dropdown, ButtonToolbar, Button, Table } from 'rsuite'
 
 import './index.less'
 
-const { EditorContainerLayout, SearchTable, ObjectCell } = commonsUI
+const { EditorContainerLayout } = commonsUI
 
 const { Cell, HeaderCell, Column } = Table
 
@@ -517,8 +517,8 @@ const ContextLayout = () => {
   return (
     <div>
       <EditorContainerLayout
-        menuBar={<MenuBar />}
-        toolBar={<ToolBar />}
+        menuBar={MenuBar}
+        toolBar={ToolBar}
         contextLayout={Context}
         leftLayout={LeftLayout}
       />
