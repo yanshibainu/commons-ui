@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import CheckCell from '../cell/check-cell'
-// import { ActionBar, SearchBar } from '../bar'
+import { SearchBar } from '../bar'
 import { Table, Grid, Row, Checkbox } from 'rsuite'
 
 const { Cell, Pagination, Column, HeaderCell } = Table
@@ -90,9 +90,9 @@ const SearchTable = (props) => {
 
   return (
     <div>
-      {/*
-      <SearchBar columns={props.column} />
 
+      <SearchBar columns={props.column} />
+ {/*
       {checkedKeys.length > 0 ? (
         actionData && actionData.length > 0 ? (
           <ActionBar actions={actionData} />
