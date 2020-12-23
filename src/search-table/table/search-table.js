@@ -90,9 +90,8 @@ const SearchTable = (props) => {
 
   return (
     <div>
-
-      <SearchBar columns={props.column} />
- {/*
+      {props.search && <SearchBar columns={props.column} />}
+      {/*
       {checkedKeys.length > 0 ? (
         actionData && actionData.length > 0 ? (
           <ActionBar actions={actionData} />
@@ -168,14 +167,16 @@ SearchTable.propTypes = {
   // getFolder: PropTypes.func,
   data: PropTypes.array,
   column: PropTypes.array,
-  id: PropTypes.string
+  id: PropTypes.string,
+  search: PropTypes.bool
   // customsActionBar: PropTypes.object,
   // folderName: PropTypes.string
   // onSelectItem: PropTypes.func
 }
 
 SearchTable.defaultProps = {
-  id: 'ObjectId'
+  id: 'ObjectId',
+  search: true
   // onSelectItem: null
 }
 export default SearchTable
