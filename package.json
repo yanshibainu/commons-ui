@@ -69,6 +69,7 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-split-pane": "^2.0.3",
     "rsuite": "^4.7.2",
-    "js-cookie": "^2.2.1"
+    "js-cookie": "^2.2.1",
+    "moment": "^2.27.0"
   }
 }
