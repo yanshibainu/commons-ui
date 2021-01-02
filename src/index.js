@@ -10,13 +10,15 @@ import {
 import SearchTable from './search-table/table'
 export { default as SideBarContainer } from './sidebar-container'
 export { default as SidenavLayout } from './sidenav-layout'
-export {  AttachCell,
+export {
+  AttachCell,
   CheckCell,
   ImageCell,
   DateCell,
-  ObjectCell} from './search-table/cell'
+  ObjectCell
+} from './search-table/cell'
 
-export {  default as SearchTable } from './search-table/table'
+export { default as SearchTable } from './search-table/table'
 const commonsUI = {
   EditorContainerLayout,
   AttachCell,
@@ -37,4 +39,4 @@ export default {
   commonsUI
 }
 
-export {  default as commonsUtils } from './utils'
+export { default as commonsUtils } from './utils'

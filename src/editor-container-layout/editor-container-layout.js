@@ -23,15 +23,16 @@ const styles = {
 }
 */
 const EditContainerLayout = (props) => {
-  const {
-    toolBar: ToolBar,
-    menuBar: MenuBar
-  } = props
+  const { toolBar: ToolBar, menuBar: MenuBar } = props
   return (
     <div>
       <Grid fluid>
-        <Row>{<MenuBar />}</Row>
-        <Row>{<ToolBar />}</Row>
+        <Row>
+          <MenuBar />
+        </Row>
+        <Row>
+          <ToolBar />
+        </Row>
         <Row>
           <SidebarContainer
             sideBarComponent={props.leftLayout}
