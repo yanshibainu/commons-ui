@@ -14,7 +14,7 @@ const SearchTable = (props) => {
   const [displayLength, setDisplayLength] = useState(10)
   const [page, setPage] = useState(1)
 
-  const [folderList] = useState(
+  const [data] = useState(
     props.data
       ? props.data.items
         ? props.data.items
@@ -23,8 +23,7 @@ const SearchTable = (props) => {
         : []
       : []
   )
-
-  /* const folderList = props.data
+  /* const data = props.data
     ? props.data.items
       ? props.data.items
       : props.data
@@ -35,33 +34,33 @@ const SearchTable = (props) => {
 
   useEffect(() => {
     setIndeterminateHeader(false)
-    if (folderList && folderList.length > 0) {
-      if (folderList && checkedKeys.length === folderList.length) {
+    if (data && data.length > 0) {
+      if (data && checkedKeys.length === data.length) {
         setCheckedHeader(true)
       } else if (checkedKeys.length === 0) {
         setCheckedHeader(false)
       } else if (
-        folderList &&
+        data &&
         checkedKeys.length > 0 &&
-        checkedKeys.length < folderList.length
+        checkedKeys.length < data.length
       ) {
         setIndeterminateHeader(true)
       }
       // onSelectItem()
     }
-  }, [checkedKeys, folderList])
+  }, [checkedKeys, data])
 
   const handleCheck = (value, checked) => {
     const nextCheckedKeys = checked
       ? [...checkedKeys, value]
       : checkedKeys.filter((item) => item !== value)
     setCheckedKeys(nextCheckedKeys)
-    //  const rowData = folderList.filter((item) => item.ObjectId === value)[0]
+    //  const rowData = data.filter((item) => item.ObjectId === value)[0]
     //  if (rowData && rowData.Actions) setActionData(rowData.Actions)
   }
 
   const handleCheckAll = (value, checked) => {
-    const checkedKeys = checked ? folderList.map((item) => item.ObjectId) : []
+    const checkedKeys = checked ? data.map((item) => item.ObjectId) : []
     setCheckedKeys(checkedKeys)
   }
 
@@ -107,8 +106,8 @@ const SearchTable = (props) => {
       <Grid fluid>
         <Row className='mb-2'>
           <Table
-            data={folderList}
-            onRowClick={rowClickHandle(folderList)}
+            data={data}
+            onRowClick={rowClickHandle(data)}
             height={500}
             wordWrap
             autoHeight
