@@ -1,13 +1,5 @@
-// import React, { useState } from 'react'
-// import styles from './styles.module.css'
-
-// export const ExampleComponent = ({ text }) => {
-//   const [ok, setOk] = useState(0)
-//   return <div className={styles.test}>Example Component: {text} {ok}</div>
-// }
 import EditorContainerLayout from './editor-container-layout'
 
-// talbe && cell
 import {
   AttachCell,
   CheckCell,
@@ -23,7 +15,7 @@ export {  AttachCell,
   ImageCell,
   DateCell,
   ObjectCell} from './search-table/cell'
-// export { EditorContainerLayout }
+
 export {  default as SearchTable } from './search-table/table'
 const commonsUI = {
   EditorContainerLayout,
@@ -44,3 +36,5 @@ export default {
   SearchTable,
   commonsUI
 }
+
+export {  default as commonsUtils } from './utils'

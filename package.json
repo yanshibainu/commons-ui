@@ -37,6 +37,7 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
+    "@babel/helper-regex": "^7.10.5",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
@@ -67,6 +68,7 @@
     "react-dom": "^16.13.1",
     "react-perfect-scrollbar": "^1.5.8",
     "react-split-pane": "^2.0.3",
-    "rsuite": "^4.7.2"
+    "rsuite": "^4.7.2",
+    "js-cookie": "^2.2.1"
   }
 }
