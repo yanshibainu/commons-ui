@@ -112,6 +112,10 @@ const SearchTable = (props) => {
             wordWrap
             autoHeight
           >
+            <Column filter='id' width={-1}>
+              <HeaderCell>id</HeaderCell>
+              <Cell dataKey='id' />
+            </Column>
             <Column width={50} align='center'>
               <HeaderCell>#</HeaderCell>
               <Cell>

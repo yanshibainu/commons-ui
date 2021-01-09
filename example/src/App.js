@@ -497,7 +497,14 @@ const LeftLayout = () => {
   return <div>左邊清單</div>
 }
 const Context = () => {
+  const data = [{id:'aaaaaaaaaaaaaaaaaaaaaaaaaa',objectId:'1',subject:'111'},
+  {id:'bbbbbbbbbbbbbbbbbbbbb',objectId:'2',subject:'222'}]
+
   const column = [
+    <Column id='11' filter='id' width={-1} sortable key='id'>
+      <HeaderCell>文號</HeaderCell>
+      <Cell dataKey='id' />
+    </Column>,
     <Column filter='true' flexGrow={1} sortable key='objectId'>
       <HeaderCell>文號</HeaderCell>
       <ObjectCell dataKey='objectId' />
@@ -509,7 +516,7 @@ const Context = () => {
   ]
   return (
     <div>
-      <SearchTable column={column}/>
+      <SearchTable column={column} data={data}/>
     </div>
   )
 }
