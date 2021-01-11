@@ -83,7 +83,7 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
         setTimeout(() => {
           const node = ReactDOM.findDOMNode(rootRef.current)
           if (node) DOMHelper.addStyle(node, 'width', '100%')
-        }, 200)
+        }, 500)
       }
     } else setDidMount(true)
   }, [didMount])
