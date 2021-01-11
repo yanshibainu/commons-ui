@@ -6,11 +6,7 @@ import { Table, Checkbox } from 'rsuite'
 
 const { Cell, Pagination, Column, HeaderCell } = Table
 
-const SearchTable = ({data,
-  column,
-  id,
-  search,
-  ...props}) => {
+const SearchTable = ({ data, column, id, search, ...props }) => {
   const [checkedKeys, setCheckedKeys] = useState([])
   const [checkedHeader, setCheckedHeader] = useState(false)
   const [indeterminateHeader, setIndeterminateHeader] = useState(false)
@@ -94,69 +90,69 @@ const SearchTable = ({data,
       )}
       */}
 
-          <Table
-            data={items}
-            onRowClick={rowClickHandle(items)}
-            height={500}
-            wordWrap
-            autoHeight
-            bordered={true}
-          >
-            <Column filter='id' width={-1}>
-              <HeaderCell>id</HeaderCell>
-              <Cell dataKey='id' />
-            </Column>
-            <Column width={50} align='center'>
-              <HeaderCell>#</HeaderCell>
-              <Cell>
-                {(rowData, rowIndex) => {
-                  return rowIndex + 1
-                }}
-              </Cell>
-            </Column>
-            <Column width={50} align='center'>
-              <HeaderCell style={{ padding: 0 }}>
-                <div style={{ lineHeight: '40px' }}>
-                  <Checkbox
-                    inline
-                    checked={checkedHeader}
-                    indeterminate={indeterminateHeader}
-                    onChange={handleCheckAll}
-                  />
-                </div>
-              </HeaderCell>
-              <CheckCell
-                dataKey={props.id} // 'ObjectId'
-                checkedKeys={checkedKeys}
-                onChange={handleCheck}
+      <Table
+        data={items}
+        onRowClick={rowClickHandle(items)}
+        height={500}
+        wordWrap
+        autoHeight
+        bordered
+      >
+        <Column filter='id' width={-1}>
+          <HeaderCell>id</HeaderCell>
+          <Cell dataKey='id' />
+        </Column>
+        <Column width={50} align='center'>
+          <HeaderCell>#</HeaderCell>
+          <Cell>
+            {(rowData, rowIndex) => {
+              return rowIndex + 1
+            }}
+          </Cell>
+        </Column>
+        <Column width={50} align='center'>
+          <HeaderCell style={{ padding: 0 }}>
+            <div style={{ lineHeight: '40px' }}>
+              <Checkbox
+                inline
+                checked={checkedHeader}
+                indeterminate={indeterminateHeader}
+                onChange={handleCheckAll}
               />
-            </Column>
-            {column}
-          </Table>
-          <Pagination
-            lengthMenu={[
-              {
-                value: 10,
-                label: 10
-              },
-              {
-                value: 20,
-                label: 20
-              }
-            ]}
-            activePage={page}
-            displayLength={displayLength}
-            total={pagination ? pagination.total : 0}
-            onChangePage={handleChangePage}
-            onChangeLength={handleChangeLength}
-            size='lg'
+            </div>
+          </HeaderCell>
+          <CheckCell
+            dataKey={props.id} // 'ObjectId'
+            checkedKeys={checkedKeys}
+            onChange={handleCheck}
           />
+        </Column>
+        {column}
+      </Table>
+      <Pagination
+        lengthMenu={[
+          {
+            value: 10,
+            label: 10
+          },
+          {
+            value: 20,
+            label: 20
+          }
+        ]}
+        activePage={page}
+        displayLength={displayLength}
+        total={pagination ? pagination.total : 0}
+        onChangePage={handleChangePage}
+        onChangeLength={handleChangeLength}
+        size='lg'
+      />
     </div>
   )
 }
 SearchTable.propTypes = {
   // getFolder: PropTypes.func,
-  data: PropTypes.array,
+  data: PropTypes.object,
   column: PropTypes.array,
   id: PropTypes.string,
   search: PropTypes.bool
