@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import CheckCell from '../cell/check-cell'
 import ReactDOM from 'react-dom'
 import { SearchBar } from '../bar'
-import { Table, Grid, Row, Checkbox, DOMHelper } from 'rsuite'
+import { Table, Checkbox, DOMHelper } from 'rsuite'
 
 const { Cell, Pagination, Column, HeaderCell } = Table
 
