@@ -39,8 +39,8 @@ const userInfoStyles = {
   height: 20
 }
 
-const NavToggle = ({ expand, onChange }) => (
-  <Navbar className='nav-toggle'>
+const NavToggle = ({ expand, onChange, appearance }) => (
+  <Navbar className='nav-toggle' appearance={appearance}>
     <Navbar.Body>
       <Nav pullRight>
         <Nav.Item
@@ -56,17 +56,9 @@ const NavToggle = ({ expand, onChange }) => (
 
 NavToggle.propTypes = {
   expand: PropTypes.bool.isRequired,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  appearance: PropTypes.string
 }
-
-// const defaultOpenKeys = ['task', 'system']
-
-// const SidenavContainer = connect(
-//   $$state => ({
-//     badge: $$state.get("$$task").get("count"),
-//     defaultOpenKeys
-//   })
-// )(Sidenav)
 
 const propTypes = {
   sidenavTitle: PropTypes.elementType.isRequired,
@@ -77,11 +69,13 @@ const propTypes = {
   activePath: PropTypes.string,
   defaultOpenKeys: PropTypes.array,
   error: PropTypes.string,
-  isExpand: PropTypes.bool
+  isExpand: PropTypes.bool,
+  appearance: PropTypes.string
 }
 
 const defaultProps = {
-  isExpand: true
+  isExpand: true,
+  appearance: 'subtle'
 }
 
 const Layout = ({
@@ -93,7 +87,8 @@ const Layout = ({
   error,
   activePath,
   defaultOpenKeys,
-  isExpand
+  isExpand,
+  appearance
 }) => {
   const [expand, setExpand] = useState(isExpand)
 
@@ -115,6 +110,7 @@ const Layout = ({
                 expanded={expand}
                 activePath={activePath}
                 defaultOpenKeys={defaultOpenKeys}
+                appearance={appearance}
                 sidenavBodyStyle={() => {
                   return {
                     height: `calc(100vh - ${
@@ -127,8 +123,11 @@ const Layout = ({
                 }}
               />
             </PerfectScrollbar>
-
-            <NavToggle onChange={() => _setExpand(!expand)} expand={expand} />
+            <NavToggle
+              onChange={() => _setExpand(!expand)}
+              expand={expand}
+              appearance={appearance}
+            />
           </Affix>
         </Sidebar>
         <Container style={{ minWidth: 0 }}>
