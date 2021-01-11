@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import CheckCell from '../cell/check-cell'
+import ReactDOM from 'react-dom'
 import { SearchBar } from '../bar'
-import { Table, Grid, Row, Checkbox } from 'rsuite'
+import { Table, Grid, Row, Checkbox, DOMHelper } from 'rsuite'
 
 const { Cell, Pagination, Column, HeaderCell } = Table
 
@@ -13,6 +14,8 @@ const SearchTable = (props) => {
   // const [actionData, setActionData] = useState([])
   const [displayLength, setDisplayLength] = useState(10)
   const [page, setPage] = useState(1)
+  const [didMount, setDidMount] = useState(false)
+  const rowRef = useRef()
 
   const [data] = useState(
     props.data
@@ -87,8 +90,20 @@ const SearchTable = (props) => {
     setDisplayLength(dataKey)
   }
 
+  // rsuite-table 第一次無法正確重算寬度bug處理。
+  useEffect(() => {
+    if (didMount) {
+      if (rowRef) {
+        setTimeout(() => {
+          const node = ReactDOM.findDOMNode(rowRef.current)
+          if (node) DOMHelper.addStyle(node, 'width', '100%')
+        }, 200)
+      }
+    } else setDidMount(true)
+  }, [didMount])
+
   return (
-    <div>
+    <React.Fragment>
       {props.search && <SearchBar columns={props.column} />}
       {/*
       {checkedKeys.length > 0 ? (
@@ -104,13 +119,14 @@ const SearchTable = (props) => {
       )}
       */}
       <Grid fluid>
-        <Row className='mb-2'>
+        <Row ref={rowRef} className='mb-2' style={{ width: '99%' }}>
           <Table
             data={data}
             onRowClick={rowClickHandle(data)}
-            height={500}
+            // height={500}
             wordWrap
             autoHeight
+            affixHeader
           >
             <Column filter='id' width={-1}>
               <HeaderCell>id</HeaderCell>
@@ -163,7 +179,7 @@ const SearchTable = (props) => {
           />
         </Row>
       </Grid>
-    </div>
+    </React.Fragment>
   )
 }
 SearchTable.propTypes = {
