@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import CheckCell from '../cell/check-cell'
 import { SearchBar } from '../bar'
-import { Table, Grid, Row, Checkbox } from 'rsuite'
+import { Table, Checkbox } from 'rsuite'
 
 const { Cell, Pagination, Column, HeaderCell } = Table
 
-const SearchTable = (props) => {
+const SearchTable = ({data,
+  column,
+  id,
+  search,
+  ...props}) => {
   const [checkedKeys, setCheckedKeys] = useState([])
   const [checkedHeader, setCheckedHeader] = useState(false)
   const [indeterminateHeader, setIndeterminateHeader] = useState(false)
@@ -14,41 +18,27 @@ const SearchTable = (props) => {
   const [displayLength, setDisplayLength] = useState(10)
   const [page, setPage] = useState(1)
 
-  const [data] = useState(
-    props.data
-      ? props.data.items
-        ? props.data.items
-        : props.data
-        ? props.data
-        : []
-      : []
-  )
-  /* const data = props.data
-    ? props.data.items
-      ? props.data.items
-      : props.data
-      ? props.data
-      : []
-    : [] */
-  const pagination = props.data ? props.data.pagination : null
+  const [items] = useState(data?.items || [])
+
+  const pagination = data?.pagination
 
   useEffect(() => {
     setIndeterminateHeader(false)
-    if (data && data.length > 0) {
-      if (data && checkedKeys.length === data.length) {
+    if (items && items.length > 0) {
+      if (items && checkedKeys.length === items.length) {
         setCheckedHeader(true)
       } else if (checkedKeys.length === 0) {
         setCheckedHeader(false)
       } else if (
-        data &&
+        items &&
         checkedKeys.length > 0 &&
-        checkedKeys.length < data.length
+        checkedKeys.length < items.length
       ) {
         setIndeterminateHeader(true)
       }
       // onSelectItem()
     }
-  }, [checkedKeys, data])
+  }, [checkedKeys, items])
 
   const handleCheck = (value, checked) => {
     const nextCheckedKeys = checked
@@ -60,7 +50,7 @@ const SearchTable = (props) => {
   }
 
   const handleCheckAll = (value, checked) => {
-    const checkedKeys = checked ? data.map((item) => item.ObjectId) : []
+    const checkedKeys = checked ? items.map((item) => item.ObjectId) : []
     setCheckedKeys(checkedKeys)
   }
 
@@ -89,7 +79,7 @@ const SearchTable = (props) => {
 
   return (
     <div>
-      {props.search && <SearchBar columns={props.column} />}
+      {search && <SearchBar columns={column} />}
       {/*
       {checkedKeys.length > 0 ? (
         actionData && actionData.length > 0 ? (
@@ -103,14 +93,14 @@ const SearchTable = (props) => {
         <div style={{ padding: '18px' }}> </div>
       )}
       */}
-      <Grid fluid>
-        <Row className='mb-2'>
+
           <Table
-            data={data}
-            onRowClick={rowClickHandle(data)}
+            data={items}
+            onRowClick={rowClickHandle(items)}
             height={500}
             wordWrap
             autoHeight
+            bordered={true}
           >
             <Column filter='id' width={-1}>
               <HeaderCell>id</HeaderCell>
@@ -141,7 +131,7 @@ const SearchTable = (props) => {
                 onChange={handleCheck}
               />
             </Column>
-            {props.column}
+            {column}
           </Table>
           <Pagination
             lengthMenu={[
@@ -161,8 +151,6 @@ const SearchTable = (props) => {
             onChangeLength={handleChangeLength}
             size='lg'
           />
-        </Row>
-      </Grid>
     </div>
   )
 }
