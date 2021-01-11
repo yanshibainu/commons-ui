@@ -7,7 +7,7 @@ import { Table, Grid, Row, Checkbox, DOMHelper } from 'rsuite'
 
 const { Cell, Pagination, Column, HeaderCell } = Table
 
-const SearchTable = (props) => {
+const SearchTable = ({ data, column, id, search, ...props }) => {
   const [checkedKeys, setCheckedKeys] = useState([])
   const [checkedHeader, setCheckedHeader] = useState(false)
   const [indeterminateHeader, setIndeterminateHeader] = useState(false)
@@ -15,43 +15,29 @@ const SearchTable = (props) => {
   const [displayLength, setDisplayLength] = useState(10)
   const [page, setPage] = useState(1)
   const [didMount, setDidMount] = useState(false)
-  const rowRef = useRef()
+  const rootRef = useRef()
 
-  const [data] = useState(
-    props.data
-      ? props.data.items
-        ? props.data.items
-        : props.data
-        ? props.data
-        : []
-      : []
-  )
-  /* const data = props.data
-    ? props.data.items
-      ? props.data.items
-      : props.data
-      ? props.data
-      : []
-    : [] */
-  const pagination = props.data ? props.data.pagination : null
+  const [items] = useState(data?.items || [])
+
+  const pagination = data?.pagination
 
   useEffect(() => {
     setIndeterminateHeader(false)
-    if (data && data.length > 0) {
-      if (data && checkedKeys.length === data.length) {
+    if (items && items.length > 0) {
+      if (items && checkedKeys.length === items.length) {
         setCheckedHeader(true)
       } else if (checkedKeys.length === 0) {
         setCheckedHeader(false)
       } else if (
-        data &&
+        items &&
         checkedKeys.length > 0 &&
-        checkedKeys.length < data.length
+        checkedKeys.length < items.length
       ) {
         setIndeterminateHeader(true)
       }
       // onSelectItem()
     }
-  }, [checkedKeys, data])
+  }, [checkedKeys, items])
 
   const handleCheck = (value, checked) => {
     const nextCheckedKeys = checked
@@ -63,7 +49,7 @@ const SearchTable = (props) => {
   }
 
   const handleCheckAll = (value, checked) => {
-    const checkedKeys = checked ? data.map((item) => item.ObjectId) : []
+    const checkedKeys = checked ? items.map((item) => item.ObjectId) : []
     setCheckedKeys(checkedKeys)
   }
 
@@ -93,9 +79,9 @@ const SearchTable = (props) => {
   // rsuite-table 第一次無法正確重算寬度bug處理。
   useEffect(() => {
     if (didMount) {
-      if (rowRef) {
+      if (rootRef) {
         setTimeout(() => {
-          const node = ReactDOM.findDOMNode(rowRef.current)
+          const node = ReactDOM.findDOMNode(rootRef.current)
           if (node) DOMHelper.addStyle(node, 'width', '100%')
         }, 200)
       }
@@ -103,8 +89,8 @@ const SearchTable = (props) => {
   }, [didMount])
 
   return (
-    <React.Fragment>
-      {props.search && <SearchBar columns={props.column} />}
+    <div ref={rootRef} style={{ width: '99%' }}>
+      {search && <SearchBar columns={column} />}
       {/*
       {checkedKeys.length > 0 ? (
         actionData && actionData.length > 0 ? (
@@ -118,73 +104,69 @@ const SearchTable = (props) => {
         <div style={{ padding: '18px' }}> </div>
       )}
       */}
-      <Grid fluid>
-        <Row ref={rowRef} className='mb-2' style={{ width: '99%' }}>
-          <Table
-            data={data}
-            onRowClick={rowClickHandle(data)}
-            // height={500}
-            wordWrap
-            autoHeight
-            affixHeader
-          >
-            <Column filter='id' width={-1}>
-              <HeaderCell>id</HeaderCell>
-              <Cell dataKey='id' />
-            </Column>
-            <Column width={50} align='center'>
-              <HeaderCell>#</HeaderCell>
-              <Cell>
-                {(rowData, rowIndex) => {
-                  return rowIndex + 1
-                }}
-              </Cell>
-            </Column>
-            <Column width={50} align='center'>
-              <HeaderCell style={{ padding: 0 }}>
-                <div style={{ lineHeight: '40px' }}>
-                  <Checkbox
-                    inline
-                    checked={checkedHeader}
-                    indeterminate={indeterminateHeader}
-                    onChange={handleCheckAll}
-                  />
-                </div>
-              </HeaderCell>
-              <CheckCell
-                dataKey={props.id} // 'ObjectId'
-                checkedKeys={checkedKeys}
-                onChange={handleCheck}
+      <Table
+        data={items}
+        onRowClick={rowClickHandle(items)}
+        wordWrap
+        autoHeight
+        bordered
+        affixHeader
+      >
+        <Column filter='id' width={-1}>
+          <HeaderCell>id</HeaderCell>
+          <Cell dataKey='id' />
+        </Column>
+        <Column width={50} align='center'>
+          <HeaderCell>#</HeaderCell>
+          <Cell>
+            {(rowData, rowIndex) => {
+              return rowIndex + 1
+            }}
+          </Cell>
+        </Column>
+        <Column width={50} align='center'>
+          <HeaderCell style={{ padding: 0 }}>
+            <div style={{ lineHeight: '40px' }}>
+              <Checkbox
+                inline
+                checked={checkedHeader}
+                indeterminate={indeterminateHeader}
+                onChange={handleCheckAll}
               />
-            </Column>
-            {props.column}
-          </Table>
-          <Pagination
-            lengthMenu={[
-              {
-                value: 10,
-                label: 10
-              },
-              {
-                value: 20,
-                label: 20
-              }
-            ]}
-            activePage={page}
-            displayLength={displayLength}
-            total={pagination ? pagination.total : 0}
-            onChangePage={handleChangePage}
-            onChangeLength={handleChangeLength}
-            size='lg'
+            </div>
+          </HeaderCell>
+          <CheckCell
+            dataKey={props.id} // 'ObjectId'
+            checkedKeys={checkedKeys}
+            onChange={handleCheck}
           />
-        </Row>
-      </Grid>
-    </React.Fragment>
+        </Column>
+        {column}
+      </Table>
+      <Pagination
+        lengthMenu={[
+          {
+            value: 10,
+            label: 10
+          },
+          {
+            value: 20,
+            label: 20
+          }
+        ]}
+        activePage={page}
+        displayLength={displayLength}
+        total={pagination ? pagination.total : 0}
+        onChangePage={handleChangePage}
+        onChangeLength={handleChangeLength}
+        size='lg'
+      />
+    </div>
   )
 }
 SearchTable.propTypes = {
   // getFolder: PropTypes.func,
-  data: PropTypes.array,
+  data: PropTypes.object,
   column: PropTypes.array,
   id: PropTypes.string,
   search: PropTypes.bool
