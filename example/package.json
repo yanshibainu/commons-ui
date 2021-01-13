@@ -1,13 +1,14 @@
 {
   "name": "commons-ui-example",
-  "homepage": "yanshibainu/od-editor-ui/example/commons-ui-example",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "cross-env port=3003 react-app-rewired start",
+    "start": "cross-env port=3003 react-scripts start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "cosmos": "cosmos --port 7777",
+    "cosmos:export": "cosmos-export"
   },
   "dependencies": {
     "commons-ui": "link:..",
@@ -20,8 +21,10 @@
     "react-scripts": "link:../node_modules/react-scripts"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
     "cross-env": "^5.1.4",
-    "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
+    "node-less-chokidar": "^0.4.1",
+    "react-cosmos": "^5.5.3"
   },
   "eslintConfig": {
     "extends": "react-app"
