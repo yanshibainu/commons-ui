@@ -17,7 +17,7 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
   const [didMount, setDidMount] = useState(false)
   const rootRef = useRef()
 
-  const [items] = useState(data?.items || [])
+  const [items] = useState(data?.items || data)
 
   const pagination = data?.pagination
 
