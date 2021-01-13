@@ -166,7 +166,7 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
 }
 SearchTable.propTypes = {
   // getFolder: PropTypes.func,
-  data: PropTypes.object,
+  data: PropTypes.array,
   column: PropTypes.array,
   id: PropTypes.string,
   search: PropTypes.bool
@@ -177,7 +177,8 @@ SearchTable.propTypes = {
 
 SearchTable.defaultProps = {
   id: 'ObjectId',
-  search: true
+  search: true,
+  data: []
   // onSelectItem: null
 }
 export default SearchTable
