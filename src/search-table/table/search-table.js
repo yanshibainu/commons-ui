@@ -160,6 +160,7 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
         onChangePage={handleChangePage}
         onChangeLength={handleChangeLength}
         size='lg'
+        locale ={{  lengthMenuInfo: '顯示 {0} 資料',totalInfo:'資料筆數: {0}' }}
       />
     </div>
   )
