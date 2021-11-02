@@ -26,6 +26,7 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:unit-coverage": "cross-env CI=1 react-scripts test --env=jsdom --coverage",
     "test:watch": "react-scripts test --env=jsdom",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "pre-deploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
     "publish:npm": "yarn publish"
@@ -38,6 +39,8 @@
   },
   "devDependencies": {
     "@babel/helper-regex": "^7.10.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
@@ -64,12 +67,12 @@
   ],
   "dependencies": {
     "add": "^2.0.6",
+    "js-cookie": "^2.2.1",
+    "moment": "^2.27.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-perfect-scrollbar": "^1.5.8",
     "react-split-pane": "^2.0.3",
-    "rsuite": "4.8.6",
-    "js-cookie": "^2.2.1",
-    "moment": "^2.27.0"
+    "rsuite": "4.8.6"
   }
 }
