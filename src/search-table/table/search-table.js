@@ -105,6 +105,7 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
       )}
       */}
       <Table
+        data-testid="search-table"
         data={items}
         onRowClick={rowClickHandle(items)}
         wordWrap
