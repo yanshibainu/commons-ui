@@ -7,10 +7,14 @@ const { Cell, HeaderCell, Column } = Table
 const Context = () => {
   const [search] = useValue('search', { defaultValue: true });
 
-  const data = [
+  /*const data = [
     { id: 'aaaaaaaaaaaaaaaaaaaaaaaaaa', objectId: '1', subject: '111' },
     { id: 'bbbbbbbbbbbbbbbbbbbbb', objectId: '2', subject: '222' }
-  ]
+  ]*/
+  const [data] = useValue('data', { defaultValue: [
+    { id: 'aaaaaaaaaaaaaaaaaaaaaaaaaa', objectId: '1', subject: '111' },
+    { id: 'bbbbbbbbbbbbbbbbbbbbb', objectId: '2', subject: '222' }
+  ] });
 
   const column = [
     <Column id='11' filter='id' width={-1} sortable key='id'>

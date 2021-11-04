@@ -4,6 +4,7 @@ import '@testing-library/jest-dom'
 import SearchTable from '../search-table/table/search-table'
 import { Table } from 'rsuite'
 const { Cell, HeaderCell, Column } = Table
+
 describe('Index testing', () => {
   // debugger
   const column = [
@@ -38,4 +39,5 @@ describe('Index testing', () => {
     const node = getByTestId('search-table')
     expect(node).not.toBeNull()
   })
+
 })
