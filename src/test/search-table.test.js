@@ -1,5 +1,5 @@
 import React from 'react'
-import { render} from '@testing-library/react'
+import { render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import SearchTable from '../search-table/table/search-table'
 import { Table } from 'rsuite'
@@ -34,8 +34,8 @@ describe('Index testing', () => {
   ]
 
   test('測試是否可正常的render', () => {
-    const { getByTestId }  = render(<SearchTable column={column} data={[]}/>)
-    const node = getByTestId('search-table');
-    expect(node).not.toBeNull();
+    const { getByTestId } = render(<SearchTable column={column} data={[]} />)
+    const node = getByTestId('search-table')
+    expect(node).not.toBeNull()
   })
 })

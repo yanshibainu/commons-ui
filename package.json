@@ -12,7 +12,7 @@
   "module": "dist/index.modern.js",
   "source": "src/index.js",
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "link": "yarn link react && yarn link react-dom && yarn link react-redux",
