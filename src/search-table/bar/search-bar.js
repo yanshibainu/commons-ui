@@ -20,15 +20,14 @@ import {
 } from 'rsuite'
 
 const SearchBar = (props) => {
-  const [splitActive, setSplitActive] = useState('no')
+  const [splitMode, setSplitMode] = useState('standard')
   const [splitModeIcon, setSplitModeIcon] = useState('align-justify')
-  const handleSelect = (activeKey) => {
-    //alert(activeKey)
+  const handleSplitModeSelect = (mode) => {
     if (props.onSelectedSplitMode)
-    props.onSelectedSplitMode(activeKey);
+      props.onSelectedSplitMode(mode);
 
-    setSplitModeIcon(activeKey=='no'?'align-justify':'squares')
-    setSplitActive(activeKey);
+    setSplitModeIcon(mode=='standard'?'align-justify':'squares')
+    setSplitMode(mode);
   }
 
   const getAdvancedComponents = (columns) => {
@@ -98,16 +97,22 @@ const SearchBar = (props) => {
             >
               <IconButton size='md' icon={<Icon icon='refresh2' />} />
             </Whisper>
-            <Dropdown
-                  activeKey={splitActive}
-                  onSelect={handleSelect}
+            <Whisper
+              placement='top'
+              trigger='hover'
+              speaker={<Tooltip>切換分割窗格模式</Tooltip>}
+            >
+              <Dropdown
+                  activeKey={splitMode}
+                  onSelect={handleSplitModeSelect}
                   renderTitle={() => {
               return <IconButton appearance="primary" icon={<Icon icon={splitModeIcon} />} circle
               />;
             }}>
-              <Dropdown.Item eventKey='no'>不要分割</Dropdown.Item>
+              <Dropdown.Item eventKey='standard'>不要分割</Dropdown.Item>
               <Dropdown.Item eventKey='vertical'>垂直分割</Dropdown.Item>
             </Dropdown>
+            </Whisper>
           </ButtonToolbar>
         </Col>
       </Row>

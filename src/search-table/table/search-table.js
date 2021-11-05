@@ -10,7 +10,7 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
   // const [actionData, setActionData] = useState([])
   const [didMount, setDidMount] = useState(false)
   const rootRef = useRef()
-  const [splitMode, setSplitMode] = useState("no")
+  const [splitMode, setSplitMode] = useState("standard")
 
   // rsuite-table 第一次無法正確重算寬度bug處理。
   useEffect(() => {
@@ -30,8 +30,8 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
     )
   }
 
-  const ContentLayout2 = () => {
-    return (<div>22</div>);
+  const ContentLayout = () => {
+    return (<div></div>);
   }
 
   const onSelectedSplitMode = (mode) => {
@@ -45,12 +45,12 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
       columns={column}
       onSelectedSplitMode={(mode) => onSelectedSplitMode(mode)}
       />}
-      {splitMode=='no' ? (
+      {splitMode=='standard' ? (
             <BaseTable data={data} column={column} id={id}/>
         ) : (
           <SideBarContainer
           sideBarComponent={TableLayout}
-          contextComponent={ContentLayout2}
+          contextComponent={ContentLayout}
           sidebarShowWidth='600px'
         />
         )}
