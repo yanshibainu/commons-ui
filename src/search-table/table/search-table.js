@@ -4,7 +4,7 @@ import CheckCell from '../cell/check-cell'
 import ReactDOM from 'react-dom'
 import { SearchBar } from '../bar'
 import { Table, Checkbox, DOMHelper } from 'rsuite'
-
+import  SideBarContainer from '../../sidebar-container'
 const { Cell, Pagination, Column, HeaderCell } = Table
 
 const SearchTable = ({ data, column, id, search, ...props }) => {
@@ -16,6 +16,8 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
   const [page, setPage] = useState(1)
   const [didMount, setDidMount] = useState(false)
   const rootRef = useRef()
+  const [splitMode, setSplitMode] = useState("no")
+
 
   const [items] = useState(data?.items || data)
 
@@ -88,9 +90,156 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
     } else setDidMount(true)
   }, [didMount])
 
+  const TableLayout = () => {
+    return (
+      <div>
+      <Table
+      data-testid='search-table'
+      data={items}
+      onRowClick={rowClickHandle(items)}
+      wordWrap
+      autoHeight
+      bordered
+      affixHeader
+    >
+      <Column filter='id' width={-1}>
+        <HeaderCell>id</HeaderCell>
+        <Cell dataKey='id' />
+      </Column>
+      <Column width={50} align='center'>
+        <HeaderCell>#</HeaderCell>
+        <Cell>
+          {(rowData, rowIndex) => {
+            return rowIndex + 1
+          }}
+        </Cell>
+      </Column>
+      <Column width={50} align='center'>
+        <HeaderCell style={{ padding: 0 }}>
+          <div style={{ lineHeight: '40px' }}>
+            <Checkbox
+              inline
+              checked={checkedHeader}
+              indeterminate={indeterminateHeader}
+              onChange={handleCheckAll}
+            />
+          </div>
+        </HeaderCell>
+        <CheckCell
+          dataKey={props.id} // 'ObjectId'
+          checkedKeys={checkedKeys}
+          onChange={handleCheck}
+        />
+      </Column>
+      {column}
+    </Table>
+    <Pagination
+      lengthMenu={[
+        {
+          value: 10,
+          label: 10
+        },
+        {
+          value: 20,
+          label: 20
+        }
+      ]}
+      activePage={page}
+      displayLength={displayLength}
+      total={pagination ? pagination.total : 0}
+      onChangePage={handleChangePage}
+      onChangeLength={handleChangeLength}
+      size='lg'
+      locale={{ lengthMenuInfo: '顯示 {0} 資料', totalInfo: '資料筆數: {0}' }}
+    />
+     </div>
+    )
+  }
+
+  const ContentLayout2 = () => {
+    return (<div>22</div>);
+  }
+
+  const onSelectedSplitMode = (mode) => {
+    //alert(mode);
+     setSplitMode(mode);
+  };
   return (
     <div ref={rootRef} style={{ width: '99%' }}>
-      {search && <SearchBar columns={column} />}
+      {search &&
+      <SearchBar
+      columns={column}
+      onSelectedSplitMode={(mode) => onSelectedSplitMode(mode)}
+      />}
+      {splitMode=='no' ? (
+            <div>
+            <Table
+            data-testid='search-table'
+            data={items}
+            onRowClick={rowClickHandle(items)}
+            wordWrap
+            autoHeight
+            bordered
+            affixHeader
+          >
+            <Column filter='id' width={-1}>
+              <HeaderCell>id</HeaderCell>
+              <Cell dataKey='id' />
+            </Column>
+            <Column width={50} align='center'>
+              <HeaderCell>#</HeaderCell>
+              <Cell>
+                {(rowData, rowIndex) => {
+                  return rowIndex + 1
+                }}
+              </Cell>
+            </Column>
+            <Column width={50} align='center'>
+              <HeaderCell style={{ padding: 0 }}>
+                <div style={{ lineHeight: '40px' }}>
+                  <Checkbox
+                    inline
+                    checked={checkedHeader}
+                    indeterminate={indeterminateHeader}
+                    onChange={handleCheckAll}
+                  />
+                </div>
+              </HeaderCell>
+              <CheckCell
+                dataKey={props.id} // 'ObjectId'
+                checkedKeys={checkedKeys}
+                onChange={handleCheck}
+              />
+            </Column>
+            {column}
+          </Table>
+          <Pagination
+            lengthMenu={[
+              {
+                value: 10,
+                label: 10
+              },
+              {
+                value: 20,
+                label: 20
+              }
+            ]}
+            activePage={page}
+            displayLength={displayLength}
+            total={pagination ? pagination.total : 0}
+            onChangePage={handleChangePage}
+            onChangeLength={handleChangeLength}
+            size='lg'
+            locale={{ lengthMenuInfo: '顯示 {0} 資料', totalInfo: '資料筆數: {0}' }}
+          />
+           </div>
+        ) : (
+          <SideBarContainer
+          sideBarComponent={TableLayout}
+          contextComponent={ContentLayout2}
+          sidebarShowWidth='600px'
+        />
+        )}
       {/*
       {checkedKeys.length > 0 ? (
         actionData && actionData.length > 0 ? (
@@ -104,65 +253,7 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
         <div style={{ padding: '18px' }}> </div>
       )}
       */}
-      <Table
-        data-testid='search-table'
-        data={items}
-        onRowClick={rowClickHandle(items)}
-        wordWrap
-        autoHeight
-        bordered
-        affixHeader
-      >
-        <Column filter='id' width={-1}>
-          <HeaderCell>id</HeaderCell>
-          <Cell dataKey='id' />
-        </Column>
-        <Column width={50} align='center'>
-          <HeaderCell>#</HeaderCell>
-          <Cell>
-            {(rowData, rowIndex) => {
-              return rowIndex + 1
-            }}
-          </Cell>
-        </Column>
-        <Column width={50} align='center'>
-          <HeaderCell style={{ padding: 0 }}>
-            <div style={{ lineHeight: '40px' }}>
-              <Checkbox
-                inline
-                checked={checkedHeader}
-                indeterminate={indeterminateHeader}
-                onChange={handleCheckAll}
-              />
-            </div>
-          </HeaderCell>
-          <CheckCell
-            dataKey={props.id} // 'ObjectId'
-            checkedKeys={checkedKeys}
-            onChange={handleCheck}
-          />
-        </Column>
-        {column}
-      </Table>
-      <Pagination
-        lengthMenu={[
-          {
-            value: 10,
-            label: 10
-          },
-          {
-            value: 20,
-            label: 20
-          }
-        ]}
-        activePage={page}
-        displayLength={displayLength}
-        total={pagination ? pagination.total : 0}
-        onChangePage={handleChangePage}
-        onChangeLength={handleChangeLength}
-        size='lg'
-        locale={{ lengthMenuInfo: '顯示 {0} 資料', totalInfo: '資料筆數: {0}' }}
-      />
+
     </div>
   )
 }

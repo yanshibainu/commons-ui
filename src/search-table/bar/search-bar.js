@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import PropTypes from 'prop-types'
 import SearchInputGroup from './search-input-group'
 import {
@@ -15,10 +15,19 @@ import {
   FormGroup,
   FormControl,
   Form,
-  ControlLabel
+  ControlLabel,
+  Dropdown
 } from 'rsuite'
 
 const SearchBar = (props) => {
+  const [splitActive, setSplitActive] = useState('no')
+  const handleSelect = (activeKey) => {
+    //alert(activeKey)
+    if (props.onSelectedSplitMode)
+    props.onSelectedSplitMode(activeKey);
+    setSplitActive(activeKey);
+  }
+
   const getAdvancedComponents = (columns) => {
     const formGroup = []
     props.columns.map((c) => {
@@ -86,6 +95,16 @@ const SearchBar = (props) => {
             >
               <IconButton size='md' icon={<Icon icon='refresh2' />} />
             </Whisper>
+            <Dropdown
+                  activeKey={splitActive}
+                  onSelect={handleSelect}
+                  renderTitle={() => {
+              return <IconButton appearance="primary" icon={<Icon icon="align-justify" />} circle
+              />;
+            }}>
+              <Dropdown.Item eventKey='no'>不要分割</Dropdown.Item>
+              <Dropdown.Item eventKey='vertical'>垂直分割</Dropdown.Item>
+            </Dropdown>
           </ButtonToolbar>
         </Col>
       </Row>
