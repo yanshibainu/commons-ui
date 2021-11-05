@@ -21,10 +21,13 @@ import {
 
 const SearchBar = (props) => {
   const [splitActive, setSplitActive] = useState('no')
+  const [splitModeIcon, setSplitModeIcon] = useState('align-justify')
   const handleSelect = (activeKey) => {
     //alert(activeKey)
     if (props.onSelectedSplitMode)
     props.onSelectedSplitMode(activeKey);
+
+    setSplitModeIcon(activeKey=='no'?'align-justify':'squares')
     setSplitActive(activeKey);
   }
 
@@ -99,7 +102,7 @@ const SearchBar = (props) => {
                   activeKey={splitActive}
                   onSelect={handleSelect}
                   renderTitle={() => {
-              return <IconButton appearance="primary" icon={<Icon icon="align-justify" />} circle
+              return <IconButton appearance="primary" icon={<Icon icon={splitModeIcon} />} circle
               />;
             }}>
               <Dropdown.Item eventKey='no'>不要分割</Dropdown.Item>
