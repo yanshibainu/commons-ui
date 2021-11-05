@@ -18,15 +18,22 @@ import {
   ControlLabel,
   Dropdown
 } from 'rsuite'
+import {
+  SPLIT_MODE_STANDARD,
+  SPLIT_MODE_VERTICAL,
+  SPLIT_MODE_STANDARD_NAME,
+  SPLIT_MODE_VERTICAL_NAME,
+  SPLIT_MODE_TOOLTIP
+} from '../../constants/constants-type'
 
 const SearchBar = (props) => {
-  const [splitMode, setSplitMode] = useState('standard')
+  const [splitMode, setSplitMode] = useState(SPLIT_MODE_STANDARD)
   const [splitModeIcon, setSplitModeIcon] = useState('align-justify')
   const handleSplitModeSelect = (mode) => {
     if (props.onSelectedSplitMode)
       props.onSelectedSplitMode(mode);
 
-    setSplitModeIcon(mode=='standard'?'align-justify':'squares')
+    setSplitModeIcon(mode==SPLIT_MODE_STANDARD?'align-justify':'squares')
     setSplitMode(mode);
   }
 
@@ -100,7 +107,7 @@ const SearchBar = (props) => {
             <Whisper
               placement='top'
               trigger='hover'
-              speaker={<Tooltip>切換分割窗格模式</Tooltip>}
+              speaker={<Tooltip>{SPLIT_MODE_TOOLTIP}</Tooltip>}
             >
               <Dropdown
                   activeKey={splitMode}
@@ -109,8 +116,8 @@ const SearchBar = (props) => {
               return <IconButton appearance="primary" icon={<Icon icon={splitModeIcon} />} circle
               />;
             }}>
-              <Dropdown.Item eventKey='standard'>不要分割</Dropdown.Item>
-              <Dropdown.Item eventKey='vertical'>垂直分割</Dropdown.Item>
+              <Dropdown.Item eventKey={SPLIT_MODE_STANDARD}>{SPLIT_MODE_STANDARD_NAME}</Dropdown.Item>
+              <Dropdown.Item eventKey={SPLIT_MODE_VERTICAL}>{SPLIT_MODE_VERTICAL_NAME}</Dropdown.Item>
             </Dropdown>
             </Whisper>
           </ButtonToolbar>

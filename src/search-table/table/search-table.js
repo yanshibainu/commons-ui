@@ -5,12 +5,15 @@ import { SearchBar } from '../bar'
 import { DOMHelper } from 'rsuite'
 import  SideBarContainer from '../../sidebar-container'
 import BaseTable from './base-table'
+import {
+  SPLIT_MODE_STANDARD
+} from '../../constants/constants-type'
 
 const SearchTable = ({ data, column, id, search, ...props }) => {
   // const [actionData, setActionData] = useState([])
   const [didMount, setDidMount] = useState(false)
   const rootRef = useRef()
-  const [splitMode, setSplitMode] = useState("standard")
+  const [splitMode, setSplitMode] = useState(SPLIT_MODE_STANDARD)
 
   // rsuite-table 第一次無法正確重算寬度bug處理。
   useEffect(() => {
@@ -45,7 +48,7 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
       columns={column}
       onSelectedSplitMode={(mode) => onSelectedSplitMode(mode)}
       />}
-      {splitMode=='standard' ? (
+      {splitMode==SPLIT_MODE_STANDARD ? (
             <BaseTable data={data} column={column} id={id}/>
         ) : (
           <SideBarContainer
