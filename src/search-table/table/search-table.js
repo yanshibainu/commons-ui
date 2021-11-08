@@ -9,7 +9,8 @@ import {
   SPLIT_MODE_STANDARD
 } from '../../constants/constants-type'
 
-const SearchTable = ({ data, column, id, search, ...props }) => {
+const SearchTable = ({ data, column, id, search,
+  contextLayout, sidebarShowWidth,...props }) => {
   // const [actionData, setActionData] = useState([])
   const [didMount, setDidMount] = useState(false)
   const rootRef = useRef()
@@ -28,13 +29,20 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
   }, [didMount])
 
   const TableLayout = () => {
+    let  expandColumn =[];
+    column.forEach(function(item,index){
+      if(index<3)
+        expandColumn.push(item);
+    })
     return (
-      <BaseTable data={data} column={column} id={id}/>
+      <BaseTable data={data} column={expandColumn} id={id}
+        isExpand={splitMode==SPLIT_MODE_STANDARD?false:true}
+      />
     )
   }
 
   const ContentLayout = () => {
-    return (<div></div>);
+      return contextLayout;
   }
 
   const onSelectedSplitMode = (mode) => {
@@ -49,12 +57,14 @@ const SearchTable = ({ data, column, id, search, ...props }) => {
       onSelectedSplitMode={(mode) => onSelectedSplitMode(mode)}
       />}
       {splitMode==SPLIT_MODE_STANDARD ? (
-            <BaseTable data={data} column={column} id={id}/>
+            <BaseTable data={data} column={column} id={id}
+                isExpand={splitMode==SPLIT_MODE_STANDARD?false:true}
+            />
         ) : (
           <SideBarContainer
           sideBarComponent={TableLayout}
           contextComponent={ContentLayout}
-          sidebarShowWidth='600px'
+          sidebarShowWidth={sidebarShowWidth}
         />
         )}
       {/*
@@ -79,7 +89,9 @@ SearchTable.propTypes = {
   data: PropTypes.array,
   column: PropTypes.array,
   id: PropTypes.string,
-  search: PropTypes.bool
+  search: PropTypes.bool,
+  contextLayout: PropTypes.any,
+  sidebarShowWidth: PropTypes.string
   // customsActionBar: PropTypes.object,
   // folderName: PropTypes.string
   // onSelectItem: PropTypes.func
@@ -88,7 +100,9 @@ SearchTable.propTypes = {
 SearchTable.defaultProps = {
   id: 'ObjectId',
   search: true,
-  data: []
+  data: [],
+  contextLayout:<div></div>,
+  sidebarShowWidth:'500px'
   // onSelectItem: null
 }
 export default SearchTable

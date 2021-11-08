@@ -6,6 +6,8 @@ const { Cell, HeaderCell, Column } = Table
 
 const Context = () => {
   const [search] = useValue('search', { defaultValue: true });
+  const [contextLayout] = useValue('contextLayout', { defaultValue: <div>333</div> });
+  const [sidebarShowWidth] = useValue('sidebarShowWidth', { defaultValue: '500px' });
 
   /*const data = [
     { id: 'aaaaaaaaaaaaaaaaaaaaaaaaaa', objectId: '1', subject: '111' },
@@ -31,7 +33,13 @@ const Context = () => {
     </Column>
   ]
   return (
-    <SearchTable column={column} data={data} search={search}/>
+    <SearchTable
+      column={column}
+      data={data}
+      search={search}
+      contextLayout={contextLayout}
+      sidebarShowWidth={sidebarShowWidth}
+      />
   )
 }
 

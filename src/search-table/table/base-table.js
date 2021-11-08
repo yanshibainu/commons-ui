@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import CheckCell from '../cell/check-cell'
+import {CheckCell} from '../cell'
 import { Table, Checkbox} from 'rsuite'
 const { Cell, Pagination, Column, HeaderCell } = Table
 
-const BaseTable = ({ data, column, id, ...props }) => {
+const BaseTable = ({ data, column, id, isExpand, ...props }) => {
   const [checkedKeys, setCheckedKeys] = useState([])
   const [checkedHeader, setCheckedHeader] = useState(false)
   const [indeterminateHeader, setIndeterminateHeader] = useState(false)
@@ -13,6 +13,9 @@ const BaseTable = ({ data, column, id, ...props }) => {
   const [page, setPage] = useState(1)
 
   const [items] = useState(data?.items || data)
+
+  //const [expandedRowKeys, setExpandedRowKeys] = useState([])
+  const [rowKey] = useState('id')
 
   const pagination = data?.pagination
 
@@ -35,6 +38,7 @@ const BaseTable = ({ data, column, id, ...props }) => {
   }, [checkedKeys, items])
 
   const handleCheck = (value, checked) => {
+    debugger
     const nextCheckedKeys = checked
       ? [...checkedKeys, value]
       : checkedKeys.filter((item) => item !== value)
@@ -44,7 +48,7 @@ const BaseTable = ({ data, column, id, ...props }) => {
   }
 
   const handleCheckAll = (value, checked) => {
-    const checkedKeys = checked ? items.map((item) => item.ObjectId) : []
+    const checkedKeys = checked ? items.map((item) => item.id) : []
     setCheckedKeys(checkedKeys)
   }
 
@@ -70,49 +74,126 @@ const BaseTable = ({ data, column, id, ...props }) => {
     setPage(1)
     setDisplayLength(dataKey)
   }
+/*
+  const handleExpanded=(rowData, dataKey)=> {
+    let open = false;
+    const nextExpandedRowKeys = [];
 
+    expandedRowKeys.forEach(key => {
+      if (key === rowData[rowKey]) {
+        open = true;
+      } else {
+        nextExpandedRowKeys.push(key);
+      }
+    });
+
+    if (!open) {
+      nextExpandedRowKeys.push(rowData[rowKey]);
+    }
+    setExpandedRowKeys(nextExpandedRowKeys);
+  }
+*/
   return (
     <div>
-      <Table
-      data-testid='search-table'
-      data={items}
-      onRowClick={rowClickHandle(items)}
-      wordWrap
-      autoHeight
-      bordered
-      affixHeader
-    >
-      <Column filter='id' width={-1}>
-        <HeaderCell>id</HeaderCell>
-        <Cell dataKey='id' />
-      </Column>
-      <Column width={50} align='center'>
-        <HeaderCell>#</HeaderCell>
-        <Cell>
-          {(rowData, rowIndex) => {
-            return rowIndex + 1
-          }}
-        </Cell>
-      </Column>
-      <Column width={50} align='center'>
-        <HeaderCell style={{ padding: 0 }}>
-          <div style={{ lineHeight: '40px' }}>
-            <Checkbox
-              inline
-              checked={checkedHeader}
-              indeterminate={indeterminateHeader}
-              onChange={handleCheckAll}
-            />
-          </div>
-        </HeaderCell>
-        <CheckCell
-          dataKey={props.id} // 'ObjectId'
-          checkedKeys={checkedKeys}
-          onChange={handleCheck}
-        />
-      </Column>
-      {column}
-    </Table>
+      {!isExpand?
+            <Table
+                data-testid='search-table'
+                data={items}
+                onRowClick={rowClickHandle(items)}
+                rowKey={rowKey}
+                wordWrap
+                autoHeight
+                bordered
+                affixHeader
+                style={{ background: '#eee'}}
+              >
+                <Column filter='id' width={-1}>
+                  <HeaderCell>id</HeaderCell>
+                  <Cell dataKey='id' />
+                </Column>
+                <Column width={50} align='center'>
+                  <HeaderCell>#</HeaderCell>
+                  <Cell>
+                    {(rowData, rowIndex) => {
+                      return rowIndex + 1
+                    }}
+                  </Cell>
+                </Column>
+                <Column width={50} align='center'>
+                  <HeaderCell style={{ padding: 0 }}>
+                    <div style={{ lineHeight: '40px' }}>
+                      <Checkbox
+                        inline
+                        checked={checkedHeader}
+                        indeterminate={indeterminateHeader}
+                        onChange={handleCheckAll}
+                      />
+                    </div>
+                  </HeaderCell>
+                  <CheckCell
+                    dataKey={rowKey} // 'ObjectId'
+                    checkedKeys={checkedKeys}
+                    onChange={handleCheck}
+                  />
+                </Column>
+                {column}
+            </Table>
+            :
+            <Table
+                data-testid='search-expand-table'
+                data={items}
+                onRowClick={rowClickHandle(items)}
+                wordWrap
+                autoHeight
+                bordered
+                affixHeader
+                style={{ background: '#eee'}}
+                rowKey={rowKey}
+               /* expandedRowKeys={expandedRowKeys}
+                renderRowExpanded={rowData => {
+                  return (
+                    <div>
+                      {
+                        Object.keys(rowData).map(function(key, value) {
+                          return <div>{rowData[key]}</div>
+                        })
+                      }
+
+                    </div>
+                  );
+                }}*/
+              >
+                {/*<Column width={70} align="center">
+                    <HeaderCell>#</HeaderCell>
+                    <ExpandCell
+                      dataKey={id}
+                      expandedRowKeys={expandedRowKeys}
+                      onChange={handleExpanded}
+                      rowKey={rowKey}
+                    />
+              </Column>*/}
+                 <Column width={50} align='center'>
+                  <HeaderCell style={{ padding: 0 }}>
+                    <div style={{ lineHeight: '40px' }}>
+                      <Checkbox
+                        inline
+                        checked={checkedHeader}
+                        indeterminate={indeterminateHeader}
+                        onChange={handleCheckAll}
+                      />
+                    </div>
+                  </HeaderCell>
+                  <CheckCell
+                    dataKey={rowKey} // 'ObjectId'
+                    checkedKeys={checkedKeys}
+                    onChange={handleCheck}
+                  />
+                </Column>
+                {
+                  column
+                }
+            </Table>
+      }
       <Pagination
         lengthMenu={[
           {
@@ -154,6 +235,7 @@ BaseTable.propTypes = {
   data: PropTypes.array,
   column: PropTypes.array,
   id: PropTypes.string,
+  isExpand : PropTypes.bool
   // customsActionBar: PropTypes.object,
   // folderName: PropTypes.string
   // onSelectItem: PropTypes.func
@@ -161,7 +243,8 @@ BaseTable.propTypes = {
 
 BaseTable.defaultProps = {
   id: 'ObjectId',
-  data: []
+  data: [],
+  isExpand: false
   // onSelectItem: null
 }
 export default BaseTable
