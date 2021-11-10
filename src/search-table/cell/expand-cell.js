@@ -29,6 +29,7 @@ ExpandCell.propTypes = {
   onChange: PropTypes.func,
   checkedKeys: PropTypes.any,
   dataKey: PropTypes.string,
-  rowKey:PropTypes.string
+  rowKey:PropTypes.string,
+  expandedRowKeys: PropTypes.array
 }
 export default ExpandCell

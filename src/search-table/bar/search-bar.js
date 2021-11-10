@@ -34,7 +34,7 @@ const SearchBar = (props) => {
     if (props.onSelectedSplitMode)
       props.onSelectedSplitMode(mode);
 
-    setSplitModeIcon(mode==SPLIT_MODE_STANDARD?'align-justify':'squares')
+    setSplitModeIcon(mode===SPLIT_MODE_STANDARD?'align-justify':'squares')
     setSplitMode(mode);
   }
 
@@ -134,7 +134,8 @@ const SearchBar = (props) => {
 }
 
 SearchBar.propTypes = {
-  columns: PropTypes.array
+  columns: PropTypes.array,
+  onSelectedSplitMode: PropTypes.func
 }
 
 export default SearchBar

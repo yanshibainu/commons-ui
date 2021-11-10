@@ -36,7 +36,7 @@ const SearchTable = ({ data, column, id, search,
     })
     return (
       <BaseTable data={data} column={expandColumn} id={id}
-        isExpand={splitMode==SPLIT_MODE_STANDARD?false:true}
+        isExpand={splitMode===SPLIT_MODE_STANDARD?false:true}
       />
     )
   }
@@ -56,9 +56,9 @@ const SearchTable = ({ data, column, id, search,
       columns={column}
       onSelectedSplitMode={(mode) => onSelectedSplitMode(mode)}
       />}
-      {splitMode==SPLIT_MODE_STANDARD ? (
+      {splitMode===SPLIT_MODE_STANDARD ? (
             <BaseTable data={data} column={column} id={id}
-                isExpand={splitMode==SPLIT_MODE_STANDARD?false:true}
+                isExpand={splitMode===SPLIT_MODE_STANDARD?false:true}
             />
         ) : (
           <SideBarContainer
