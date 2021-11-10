@@ -38,7 +38,7 @@ const BaseTable = ({ data, column, id, isExpand, ...props }) => {
   }, [checkedKeys, items])
 
   const handleCheck = (value, checked) => {
-    debugger
+    //debugger
     const nextCheckedKeys = checked
       ? [...checkedKeys, value]
       : checkedKeys.filter((item) => item !== value)
