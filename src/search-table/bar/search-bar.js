@@ -16,7 +16,8 @@ import {
   FormControl,
   Form,
   ControlLabel,
-  Dropdown
+  Dropdown,
+  DatePicker
 } from 'rsuite'
 import {
   SPLIT_MODE_STANDARD,
@@ -41,10 +42,15 @@ const SearchBar = (props) => {
     const formGroup = []
     props.columns.map((c) => {
       if (c.props.filter === 'true') {
+       const children= c.props.children[0].props.children;
+       const dataKey=c.props.children[1].props.dataKey;
+       let type =  <FormControl name={dataKey} />
+       if(c.props.type && c.props.type==='date')
+       type=<FormControl name={dataKey} accepter={DatePicker} block/>
         formGroup.push(
           <FormGroup>
-            <ControlLabel>{c.props.children[0].props.children}</ControlLabel>
-            <FormControl name={c.props.children[1].props.dataKey} />
+            <ControlLabel>{children}</ControlLabel>
+            {type}
           </FormGroup>
         )
       }

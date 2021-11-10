@@ -30,7 +30,12 @@ const Context = () => {
     <Column filter='true' flexGrow={4} key='subject'>
       <HeaderCell>主旨</HeaderCell>
       <Cell dataKey='subject' />
+    </Column>,
+    <Column filter='true' type="date" flexGrow={4} key='subject'>
+      <HeaderCell>日期</HeaderCell>
+      <Cell dataKey='data' />
     </Column>
+
   ]
   return (
     <SearchTable
